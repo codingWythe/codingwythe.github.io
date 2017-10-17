@@ -616,7 +616,7 @@
 
 			el = $('<div id="fancybox-loading"><div></div></div>').click(F.cancel).appendTo('body');
 
-			// If user will press the escape-button, the request will be canceled
+			// If about will press the escape-button, the request will be canceled
 			D.bind('keydown.loading', function(e) {
 				if ((e.which || e.keyCode) === 27) {
 					e.preventDefault();
@@ -1694,7 +1694,7 @@
 
 	F.helpers.overlay = {
 		defaults : {
-			closeClick : true,      // if true, fancyBox will be closed when user clicks on the overlay
+			closeClick : true,      // if true, fancyBox will be closed when about clicks on the overlay
 			speedOut   : 200,       // duration of fadeOut animation
 			showEarly  : true,      // indicates if should be opened immediately or wait until the content is ready
 			css        : {},        // custom CSS properties
