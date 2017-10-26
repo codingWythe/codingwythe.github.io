@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="webpack,react,dynamic-router,frontend-style-guide,redux," />
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="臭脾气码农">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="构建环境node 6.10.3, webpack 3.6.0, react 15.6.1, react-router 2.8.1兼容IE9及以上主流浏览器，各类双核浏览器极速模式。 写在前面每个人都掌握形形色色的前端框架，无论技术流行与否，各自都用的非常舒爽。但是时间长了，会发现有很多小问题即不影响大局，却又如鲠在喉。作为一个前端技术人员，实在无法忍受，于是重构的想法应运而生。重构又带来很多业务代">
+<meta name="keywords" content="webpack,react,dynamic-router,frontend-style-guide,redux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack + react + react-router + redux最佳实践">
+<meta property="og:url" content="http://yoursite.com/2017/10/26/webpack + react + react-router + redux最佳实践/index.html">
 <meta property="og:site_name" content="臭脾气码农">
+<meta property="og:description" content="构建环境node 6.10.3, webpack 3.6.0, react 15.6.1, react-router 2.8.1兼容IE9及以上主流浏览器，各类双核浏览器极速模式。 写在前面每个人都掌握形形色色的前端框架，无论技术流行与否，各自都用的非常舒爽。但是时间长了，会发现有很多小问题即不影响大局，却又如鲠在喉。作为一个前端技术人员，实在无法忍受，于是重构的想法应运而生。重构又带来很多业务代">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-26T07:54:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="臭脾气码农">
+<meta name="twitter:title" content="webpack + react + react-router + redux最佳实践">
+<meta name="twitter:description" content="构建环境node 6.10.3, webpack 3.6.0, react 15.6.1, react-router 2.8.1兼容IE9及以上主流浏览器，各类双核浏览器极速模式。 写在前面每个人都掌握形形色色的前端框架，无论技术流行与否，各自都用的非常舒爽。但是时间长了，会发现有很多小问题即不影响大局，却又如鲠在喉。作为一个前端技术人员，实在无法忍受，于是重构的想法应运而生。重构又带来很多业务代">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/26/webpack + react + react-router + redux最佳实践/"/>
 
 
 
 
 
-  <title>臭脾气码农</title>
+  <title>webpack + react + react-router + redux最佳实践 | 臭脾气码农</title>
   
 
 
@@ -140,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,9 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -276,9 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/26/webpack + react + react-router + redux最佳实践/" itemprop="url">webpack + react + react-router + redux最佳实践</a></h1>
+          <h1 class="post-title" itemprop="name headline">webpack + react + react-router + redux最佳实践</h1>
         
 
         <div class="post-meta">
@@ -328,9 +330,7 @@
       
 
       
-        
-          
-            <h2 id="构建环境"><a href="#构建环境" class="headerlink" title="构建环境"></a>构建环境</h2><p>node 6.10.3, webpack 3.6.0, react 15.6.1, react-router 2.8.1<br>兼容IE9及以上主流浏览器，各类双核浏览器极速模式。</p>
+        <h2 id="构建环境"><a href="#构建环境" class="headerlink" title="构建环境"></a>构建环境</h2><p>node 6.10.3, webpack 3.6.0, react 15.6.1, react-router 2.8.1<br>兼容IE9及以上主流浏览器，各类双核浏览器极速模式。</p>
 <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>每个人都掌握形形色色的前端框架，无论技术流行与否，各自都用的非常舒爽。但是时间长了，会发现有很多小问题即不影响大局，却又如鲠在喉。作为一个前端技术人员，实在无法忍受，于是重构的想法应运而生。<br>重构又带来很多业务代码不兼容等问题，所以本文所写一篇webpack1.x升级至3.x的经历。</p>
 <h2 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h2><p>公司之前的项目是基于webpack 1.8.5, react15.3.2, react-router2.8.1动态路由的react框架。是我认识唯一一个从事前端超过十年的大牛构建于16年初的项目，也是我前端初窥门径的奠基石。<br>因为包管理的紊乱，webpack配置管理紊乱，构建年代久远无法兼容一些新的功能等关系。终于忍痛对其进行了静默升级。</p>
 <h2 id="webpack配置"><a href="#webpack配置" class="headerlink" title="webpack配置"></a>webpack配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">let ExtractTextPlugin = require(&apos;extract-text-webpack-plugin&apos;) //样式分离插件</div><div class="line">module.exports = function (options) &#123; // 通过配置分离开发，测试，生产打包。</div><div class="line">  return &#123;</div><div class="line">    devtool: options.devTool, // 配置生成SourceMaps，选择合适的选项</div><div class="line">    entry: __dirname + &apos;/config/react.app.jsx&apos;, // 唯一入口文件</div><div class="line">    output: &#123;</div><div class="line">      path: __dirname + &apos;/build/&apos;, // 打包后的文件存放的地方</div><div class="line">      filename: options.bundleHash ? &apos;assets/bundle-[hash].js&apos; : &apos;bundle.js&apos;, //bundle命名是否混淆</div><div class="line">      chunkFilename: &apos;assets/chunk-[id]-[chunkhash].js&apos;,//webpack code splitting chunk命名</div><div class="line">      publicPath: options.publicPath // 打包公共路径</div><div class="line">    &#125;,</div><div class="line">    module: &#123;// 各类loaders配置</div><div class="line">      loaders: [&#123;</div><div class="line">        test: /\.(scss)$/,</div><div class="line">        loader: ExtractTextPlugin.extract(&#123;</div><div class="line">          fallback: &apos;style-loader&apos;,</div><div class="line">            use: [</div><div class="line">              &#123;loader: &apos;css-loader&apos;, options: &#123;module: true&#125;&#125;,</div><div class="line">              &apos;postcss-loader&apos;,</div><div class="line">              &apos;sass-loader&apos;</div><div class="line">            ]</div><div class="line">        &#125;)</div><div class="line">      &#125;]</div><div class="line">    &#125;,</div><div class="line">    plugins: options.plugins, //webpack plugins 分离，方便管理</div><div class="line">    devServer: &#123;</div><div class="line">      historyApiFallback: true, // spa单页不跳转</div><div class="line">      inline: true, //热更</div><div class="line">      proxy: &#123; //代理</div><div class="line">        &apos;/api&apos;: &#123;</div><div class="line">          target: options.apiUrl,</div><div class="line">          changeOrigin: true</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -353,8 +353,6 @@
 <li><a href="https://github.com/codingWythe/react-redux-reactRouter-start" target="_blank" rel="external">项目github</a></li>
 </ul>
 
-          
-        
       
     </div>
     
@@ -369,14 +367,28 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" <i class="fa fa-tag"></i> webpack</a>
+          
+            <a href="/tags/react/" <i class="fa fa-tag"></i> react</a>
+          
+            <a href="/tags/dynamic-router/" <i class="fa fa-tag"></i> dynamic-router</a>
+          
+            <a href="/tags/frontend-style-guide/" <i class="fa fa-tag"></i> frontend-style-guide</a>
+          
+            <a href="/tags/redux/" <i class="fa fa-tag"></i> redux</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -386,10 +398,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -397,6 +410,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -417,8 +434,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -483,6 +509,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建环境"><span class="nav-number">1.</span> <span class="nav-text">构建环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">2.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目介绍"><span class="nav-number">3.</span> <span class="nav-text">项目介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack配置"><span class="nav-number">4.</span> <span class="nav-text">webpack配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react-react-router配置"><span class="nav-number">5.</span> <span class="nav-text">react react-router配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github地址"><span class="nav-number">6.</span> <span class="nav-text">github地址</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -623,6 +665,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
