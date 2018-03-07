@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="webpack,react,dynamic-router,frontend-style-guide,redux," />
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="臭脾气码农">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="构建环境node 6.10.3, webpack 3.6.0, react 15.6.1, react-router 2.8.1兼容IE9及以上主流浏览器，各类双核浏览器极速模式。 写在前面每个人都掌握形形色色的前端框架，无论技术流行与否，各自都用的非常舒爽。但是时间长了，会发现有很多小问题即不影响大局，却又如鲠在喉。作为一个前端技术人员，实在无法忍受，于是重构的想法应运而生。重构又带来很多业务代">
+<meta name="keywords" content="webpack,react,dynamic-router,frontend-style-guide,redux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack + react + react-router + redux最佳实践">
+<meta property="og:url" content="http://yoursite.com/2018/03/06/webpack + react + react-router + redux最佳实践/index.html">
 <meta property="og:site_name" content="臭脾气码农">
+<meta property="og:description" content="构建环境node 6.10.3, webpack 3.6.0, react 15.6.1, react-router 2.8.1兼容IE9及以上主流浏览器，各类双核浏览器极速模式。 写在前面每个人都掌握形形色色的前端框架，无论技术流行与否，各自都用的非常舒爽。但是时间长了，会发现有很多小问题即不影响大局，却又如鲠在喉。作为一个前端技术人员，实在无法忍受，于是重构的想法应运而生。重构又带来很多业务代">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-06T08:20:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="臭脾气码农">
+<meta name="twitter:title" content="webpack + react + react-router + redux最佳实践">
+<meta name="twitter:description" content="构建环境node 6.10.3, webpack 3.6.0, react 15.6.1, react-router 2.8.1兼容IE9及以上主流浏览器，各类双核浏览器极速模式。 写在前面每个人都掌握形形色色的前端框架，无论技术流行与否，各自都用的非常舒爽。但是时间长了，会发现有很多小问题即不影响大局，却又如鲠在喉。作为一个前端技术人员，实在无法忍受，于是重构的想法应运而生。重构又带来很多业务代">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/06/webpack + react + react-router + redux最佳实践/"/>
 
 
 
 
 
-  <title>臭脾气码农</title>
+  <title>webpack + react + react-router + redux最佳实践 | 臭脾气码农</title>
   
 
 
@@ -140,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,232 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/07/JS中数据类型剖析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://oy0btip7w.bkt.clouddn.com/WechatIMG187.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="臭脾气码农">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/07/JS中数据类型剖析/" itemprop="url">JS中数据类型剖析（js基础提升之一）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T18:02:38+08:00">
-                2018-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p>大型js基础系列文章开更，自己深入理解js的同时并书写记录方便他人，予人玫瑰手有余香！</p>
-<hr>
-<h2 id="什么是数据类型，js中的数据类型"><a href="#什么是数据类型，js中的数据类型" class="headerlink" title="什么是数据类型，js中的数据类型"></a>什么是数据类型，js中的数据类型</h2><p>什么是数据类型？很多人会心一笑，说数据类型就是数据的类型啊，还有什么其他更深层层次的解释吗？<br>一开始我也着么认为，抱着肯定的态度打开浏览器确认一下自己的观点。于是乎下面的一段话出现在我的眼前。  </p>
-<blockquote>
-<p>数据类型在数据结构中的定义是一个值的集合以及定义在这个值集上的一组操作。</p>
-</blockquote>
-<p>计算机是一种二进制计算工具，只存在0和1，每一位数据可存储的数据有限，只有高电位和低电位两种情况。<br>拿java8大数据类型中的两种最简单的数据类型int型和bool型来说。<br>int型最大整数:2147483647，最小整数:-2147483648。数据占位4字节。字节即B（byte）是信息的最小单位。<br>bool型true和false。占位1字节。<br>这就是数据类型存在的意义，因为不同数据信息占位不同，为了不浪费系统空间，把不同数据类型的数据尽量压缩在最小的信息单元，来节省运行程序所带来的消耗。  </p>
-<p>说着么多各位看官觉得我扯远了，可是很多时候人就是这样，只会看见事物表面的东西，而深层次的本源忘的一干二净。其实上面的一段话对于计算机毕业的学生来说并不陌生，只是我们在日常工作中忽视了代码的本源而已，只有剥茧抽丝你才能成长！</p>
-<p>js中的数据类型一共有6种，分别是Undefine,Null,Boolean,Number,String以及Object。<br>数据类型的定义不说，自行查找或者理解的直接往下看。  </p>
-<hr>
-<h2 id="简单数据类型和复杂数据类型关系（也有叫原始数据类型和引用数据类型的，这里按照javascript高级程序设计书中的称呼）"><a href="#简单数据类型和复杂数据类型关系（也有叫原始数据类型和引用数据类型的，这里按照javascript高级程序设计书中的称呼）" class="headerlink" title="简单数据类型和复杂数据类型关系（也有叫原始数据类型和引用数据类型的，这里按照javascript高级程序设计书中的称呼）"></a>简单数据类型和复杂数据类型关系（也有叫原始数据类型和引用数据类型的，这里按照javascript高级程序设计书中的称呼）</h2><p>先看定义（引自w3school） </p>
-<blockquote>
-<p>简单数据类型：存储在栈（stack）中的简单数据段，也就是说，它们的值直接存储在变量访问的位置。<br>复杂数据类型：存储在堆（heap）中的对象，也就是说，存储在变量处的值是一个指针（point），指向存储对象的内存处。</p>
-</blockquote>
-<p>简单数据类型一共有五种，分别为：Undefine,Null,Boolean,Number,String而复杂数据类型只有一种即为Object一张w3school的图帮你理解两者之间的区别。<br><img style="border:none" src="http://www.w3school.com.cn//i/ct_js_value.gif"></p>
-<blockquote>
-<p>代码方式理解如下：</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> stringA = <span class="string">'abc'</span></div><div class="line"><span class="keyword">let</span> stringB = stringA</div><div class="line"><span class="built_in">console</span>.log(stringA,stringB) <span class="comment">//abc abc</span></div><div class="line">stringA = <span class="string">'bcd'</span></div><div class="line"><span class="built_in">console</span>.log(stringA,stringB) <span class="comment">//bcd abc</span></div></pre></td></tr></table></figure>
-<p>因为是简单数据类型，所以在改变A的时候B的值并没有改变，因为简单数据类型是在栈内存中的赋值操作。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> objA = &#123;<span class="attr">string</span>:<span class="string">'abc'</span>&#125;</div><div class="line"><span class="keyword">let</span> objB = objA</div><div class="line"><span class="built_in">console</span>.log(objA,objB) <span class="comment">// &#123;string: "abc"&#125; &#123;string: "abc"&#125;</span></div><div class="line">objA.string = <span class="string">'bcd'</span></div><div class="line"><span class="built_in">console</span>.log(objA,objB) <span class="comment">// &#123;string: "bcd"&#125; &#123;string: "bcd"&#125;</span></div></pre></td></tr></table></figure>
-<p>我们定义了一个objA, objA赋值了一个对象{string:’abc’}的地址，姑且假设{string:’abc’}的地址为0x0012ffxx，这时候我们又定义了一个objB,同时把0x0012ffxx的地址赋值给objB,所以我们第一步输出为{string: “abc”} {string: “abc”}，再之后我们把0x0012ffxx地址上的原始值给改了，所以objA和objB同时发生了改变。接着往下看。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">objA = &#123;<span class="attr">string</span>:<span class="string">'efg'</span>&#125;</div><div class="line"><span class="built_in">console</span>.log(objA,objB) <span class="comment">// &#123;string: "efg"&#125; &#123;string: "bcd"&#125;</span></div></pre></td></tr></table></figure></p>
-<p>这时候我们又干了一件事，我们把objA的赋值地址给改了，而objB则没有发生改变，所以objA和objB不同了，objB还是0x0012ffxx之前的地址，而objA指向了堆内存中的另一个地址。这个就是有时候我们需要做对象深拷贝的原因。</p>
-<blockquote>
-<p>图片理解（自己画的质量不是特别高，理解万岁）</p>
-</blockquote>
-<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WechatIMG12.jpeg">  </p>
-<hr>
-<h2 id="复杂数据类型概述（也叫引用数据类型）"><a href="#复杂数据类型概述（也叫引用数据类型）" class="headerlink" title="复杂数据类型概述（也叫引用数据类型）"></a>复杂数据类型概述（也叫引用数据类型）</h2><p>复杂数据类型也就是我们说的Object对象，用w3school的话来说：</p>
-<blockquote>
-<p>引用类型通常叫做类（class），也就是说，遇到引用值，所处理的就是对象。</p>
-</blockquote>
-<p>其实着么说并不完全正确，因为es5中并没有明确的给出’类’的概念，而我们现在说的类只是前辈通过对其他语言类的理解和对js的摸索模拟出的一个类。即使es6中加入了class和extends也是通过现有的继承和语法糖来实现的。 原型链和继承我们会单独拿出几篇文章来写，这里说一下复杂数据类型的一些概念详解。</p>
-<p>个人觉得js中除5种简单类型以外的类型都是Object类型，即对象。这6种对象通过typeof区分也会获得到6种结果，有意思的是这些结果并不是一一对应的，Undefine,Boolean,Number,String以及Object分别会拿到自己向对应的类型，而null则拿到了一个Object类型，可能是js底层代码认为null描述的是一个没有地址的对象类型而下的定义。</p>
-<p>而对于function类型来说，它并不是严格意义上的一种数据类型，它只能称之为函数对象，因为函数是一种特殊的对象，为了和其他对象有所区分，所以对函数对象有了一个特殊的描述。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">//true</span></div><div class="line"><span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span> <span class="comment">//true</span></div></pre></td></tr></table></figure>
-<p>对你没有看错，这两个货用instanceof运算符算出来竟然是互相继承的关系，即你中有我我中有你！<br>先简单说说instanceof</p>
-<blockquote>
-<p>instanceof 可以在继承关系中用来判断一个实例是否属于它的父类型或者祖类型（即多级继承）</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Aoo</span>(<span class="params"></span>)</span>&#123;&#125; </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;&#125; </div><div class="line">Foo.prototype = <span class="keyword">new</span> Aoo();<span class="comment">//JavaScript 原型继承</span></div><div class="line"> </div><div class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo(); </div><div class="line"><span class="built_in">console</span>.log(foo <span class="keyword">instanceof</span> Foo) <span class="comment">//true </span></div><div class="line"><span class="built_in">console</span>.log(foo <span class="keyword">instanceof</span> Aoo) <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(foo <span class="keyword">instanceof</span> <span class="built_in">Object</span>) <span class="comment">//true</span></div></pre></td></tr></table></figure>
-<p>我们定义了两个函数，分别为Aoo和Foo，而Foo通过原型继承了Aoo，而foo是通过Foo new创建而来，而所有实例都是通过Object生成的，所以都为true。  </p>
-<p>这时候我们祭出一张的图来理解Function和Object的关系</p>
-<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/objectAnFunction.jpg"></p>
-<p>通过图片我们得到以下几个结论：</p>
-<blockquote>
-<p>1.所有实例都或直接，或间接的继承自Object.prototype,而Object.prototype的<em>proto</em>指向null。js中除了简单数据类型一切都来自Object.prototype<br>2.Function.prototype继承自Object.prototype但Function创造了Object<br>3.Object instanceof Function为true，说明Object.prototype上有一段可以生产对象的指令，名字叫函数。<br>4.Function instanceof Object为true，说明Function也是对象。</p>
-</blockquote>
-<p>总之Function和Object可以用鸡生蛋和蛋生鸡的方式理解。</p>
-<p>既然已经追溯到根源，我们在浏览器中输入如下代码，看看Object.prototype是个什么东西。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype);</div></pre></td></tr></table></figure></p>
-<p>于是乎我们在浏览器中看到了如下几个方法：<br><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180307-111804@2x.png"></p>
-<blockquote>
-<p>因为篇幅的关系本文仅说明Object下的7种基本属性和方法，而get，set以及已经废弃或者非标准的方法会在原型链文章中详细说明。  </p>
-</blockquote>
-<h3 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h3><blockquote>
-<p>返回创建实例对象的 Object 构造函数的引用。（引自MDN）</p>
-</blockquote>
-<p>构造函数是什么，很多写前端er在写js的初期，对js中的对象和类理解不深刻。所以构造函数，函数重载的概念并不是很清楚，又或着还给了大学老师。我们先温习一下java中对构造函数的定义。java中的构造函数是一种特殊的方法，主要用来初始化对象。有些类中可能存在多个构造函数，根据入参的不同生成不同的对象。<br>先拿一段java代码理解一下什么是构造函数以及重载</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span></span>&#123;</div><div class="line">	<span class="keyword">private</span> String color;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Car</span><span class="params">()</span></span>&#123;</div><div class="line">		product();</div><div class="line">		System.out.println(<span class="string">"Car is produced"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Car</span><span class="params">(String color)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>();</div><div class="line">        <span class="keyword">this</span>.color = color;</div><div class="line">        getColor(color);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">product</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"Car is producing!!!"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getColor</span><span class="params">(String color)</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Car is "</span> + color);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>随便找一个java在线编译工具来编译执行一下代码，输入：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Car();</div><div class="line"><span class="keyword">new</span> Car(blue);</div></pre></td></tr></table></figure></p>
-<p>控制台会分别输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Car is producing!!!</div><div class="line">Car is produced</div><div class="line"></div><div class="line">Car is producing!!!</div><div class="line">Car is produced</div><div class="line">Car is blue</div></pre></td></tr></table></figure></p>
-<p>js因为历史原因，把类，构造函数等概念弱化了，所以通过js来理解类，构造函数等概念并不容易所以我们祭出一段java来理解。<br>首先我们定义了一个Car类，可以理解成js中我们定义了一个Car对象，这个Car对象有一个私有变量color即车的颜色，又有一个私有方法product和getColor。<br>在我们new Car()的时候，java会自动寻找同名构造函数即Car()，这时候我们就先调用product()方法，生产了一辆车。<br>当我们new Car(blue)的时候，我们也是会去寻找同名函数Car()，然后找到可以传入String类型的重载构造函数，然后调用Car(String color),然后this()即是执行Car()构造函数，然后给私有变量color赋值为blue，然后再执行getColor方法进行喷漆操作。<br>所以这时候我们有了两辆车，一辆没有颜色，一辆是蓝色的。  </p>
-<p>基础概念有了，我们回归到js，js的constructor是什么呢，是我们创建Object构造函数的引用。<br>大白话说，比如我们在浏览器中执行：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="built_in">Array</span>()</div><div class="line"><span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">5</span>)</div><div class="line"><span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</div></pre></td></tr></table></figure>
-<p>我们会拿到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[]</div><div class="line">(5) [empty × 5]</div><div class="line">[1, 2, 3, 4, 5]</div></pre></td></tr></table></figure></p>
-<p>而拿到的三个数组的constructor则是js中Array()的方法。也就是说，[].<strong>proto</strong>.constructor指向了Array()方法。<br>我们传入了null，Number以及1,2,3,4,5，Array通过构造函数重载分别生成了3个数组，而这3个数组的constructor又指向了生成自己的母体的地址。而这个Array是如何下蛋的请各位看官去看看js的源码。</p>
-<p>我们理解了constructor是什么，那么这时候我们去用js去写一个我们用java写的实例。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">color</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.color = color</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.constructor(<span class="keyword">this</span>.color)</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.product = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Car is producing!!!"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.getColor = <span class="function"><span class="keyword">function</span> (<span class="params">color</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Car is "</span> + color)</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.constructor = <span class="function"><span class="keyword">function</span> (<span class="params">color</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.product()</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Car is produced'</span>)</div><div class="line">    color ? <span class="keyword">this</span>.getColor(color) : <span class="string">''</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">new</span> Car()</div><div class="line"><span class="keyword">new</span> Car(<span class="string">'blue'</span>)</div></pre></td></tr></table></figure>
-<p>执行结果如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Car is producing!!!</div><div class="line">Car is produced</div><div class="line"></div><div class="line">Car is producing!!!</div><div class="line">Car is produced</div><div class="line">Car is blue</div></pre></td></tr></table></figure></p>
-<p>是不是跟java已经很相似了。因为js在诞生的时候就是仿照java来编写的，为了易用性作者故意弱化了js类的概念。但是js发展至今日又有使用类的需求，所以我们会模拟一些类的写法，具体如何模拟会在下一篇原型链说明中表述。</p>
-<p>剩下几个已经没有与constructor一样难以理解的方法，所以转来一些定义和示例方便大家阅读。以下概念及示例均转自MDN</p>
-<h3 id="hasOwnProperty-NaN"><a href="#hasOwnProperty-NaN" class="headerlink" title="hasOwnProperty"></a>hasOwnProperty</h3><blockquote>
-<p>所有继承了 Object 的对象都会继承到 hasOwnProperty 方法。这个方法可以用来检测一个对象是否含有特定的自身属性;并且忽略那些从原型链上继承到的属性。</p>
-</blockquote>
-<p>示例<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">o = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">o.prop = <span class="string">'exists'</span>;</div><div class="line">o.hasOwnProperty(<span class="string">'prop'</span>);             <span class="comment">// 返回 true</span></div><div class="line">o.hasOwnProperty(<span class="string">'toString'</span>);         <span class="comment">// 返回 false</span></div><div class="line">o.hasOwnProperty(<span class="string">'hasOwnProperty'</span>);   <span class="comment">// 返回 false</span></div></pre></td></tr></table></figure></p>
-<p>该方法检测对象是否含有私有的特定方法。</p>
-<h3 id="isPrototypeOf-NaN"><a href="#isPrototypeOf-NaN" class="headerlink" title="isPrototypeOf"></a>isPrototypeOf</h3><blockquote>
-<p>isPrototypeOf() 方法允许你检查一个对象是否存在于另一个对象的原型链上。</p>
-</blockquote>
-<p>示例<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Baz</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"></div><div class="line">Bar.prototype = <span class="built_in">Object</span>.create(Foo.prototype);</div><div class="line">Baz.prototype = <span class="built_in">Object</span>.create(Bar.prototype);</div><div class="line"></div><div class="line"><span class="keyword">var</span> baz = <span class="keyword">new</span> Baz();</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(Baz.prototype.isPrototypeOf(baz)); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(Bar.prototype.isPrototypeOf(baz)); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(Foo.prototype.isPrototypeOf(baz)); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.isPrototypeOf(baz)); <span class="comment">// true</span></div></pre></td></tr></table></figure></p>
-<h3 id="propertyIsEnumerable-NaN"><a href="#propertyIsEnumerable-NaN" class="headerlink" title="propertyIsEnumerable"></a>propertyIsEnumerable</h3><blockquote>
-<p>每个对象都有一个propertyIsEnumerable方法。此方法可以确定对象中指定的属性是否可以被for…in循环枚举，但是通过原型链继承的属性除外。如果对象没有指定的属性，则此方法返回false。</p>
-</blockquote>
-<p>示例<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o = &#123;&#125;;</div><div class="line"><span class="keyword">var</span> a = [];</div><div class="line">o.prop = <span class="string">'is enumerable'</span>;</div><div class="line">a[<span class="number">0</span>] = <span class="string">'is enumerable'</span>;</div><div class="line"></div><div class="line">o.propertyIsEnumerable(<span class="string">'prop'</span>);   <span class="comment">//  返回 true</span></div><div class="line">a.propertyIsEnumerable(<span class="number">0</span>);        <span class="comment">// 返回 true</span></div></pre></td></tr></table></figure></p>
-<h3 id="toLocaleString-NaN"><a href="#toLocaleString-NaN" class="headerlink" title="toLocaleString"></a>toLocaleString</h3><blockquote>
-<p>返回调用toString()的结果。会有些内置对象去复写该方法如Array，Number,Date。</p>
-</blockquote>
-<h3 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString"></a>toString</h3><blockquote>
-<p>每个对象都有一个toString()方法，当该对象被表示为一个文本值时，或者一个对象以预期的字符串方式引用时自动调用。默认情况下，toString()方法被每个Object对象继承。如果此方法在自定义对象中未被覆盖，toString() 返回 “[object type]”，其中type是对象的类型。</p>
-</blockquote>
-<h3 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf"></a>valueOf</h3><blockquote>
-<p>JavaScript调用valueOf方法将对象转换为原始值。默认情况下，valueOf方法由Object后面的每个对象继承。 每个内置的核心对象都会覆盖此方法以返回适当的值。如果对象没有原始值，则valueOf将返回对象本身。</p>
-</blockquote>
-<hr>
-<h2 id="因为数据类型遇到的坑（实时更新）"><a href="#因为数据类型遇到的坑（实时更新）" class="headerlink" title="因为数据类型遇到的坑（实时更新）"></a>因为数据类型遇到的坑（实时更新）</h2><blockquote>
-<p>Number最大值问题</p>
-</blockquote>
-<p>记得一个金融公司内部账户项目，账户id是18位的，接口反给前端是数字类型。<br>查看账户详情是得需要账户id来查询的，于是乎查询死活查不到怎么看代码都没有问题。<br>但是传出去的查询请求都是错误的id，最后才发现超过最大值，js给你自动转化了。</p>
-<blockquote>
-<p>==和===的问题</p>
-</blockquote>
-<p>也是在工作中遇到的，刚做前端的时候不以为然，觉得没什么区别，后来发现天差地别。<br>js中存在相等运算符和严格运算符。<br>严格运算符会判断，是否同一类型，同一原始值和同一复合类型值。<br>而相等运算符都会把所有原始类型的值变为数值类型进行比较。(不要小看这个，他会把0==undefined==false变为true)。<br>如果这样还无法说服你放弃使用==的话请看下面的代码。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">valueOf</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; x = <span class="number">2</span>; <span class="keyword">return</span> <span class="number">0</span> &#125;&#125;;</div><div class="line"><span class="built_in">console</span>.log(obj == <span class="number">0</span>, x) <span class="comment">// true, 2;</span></div></pre></td></tr></table></figure>
-<p>从野生程序员到家养程序员的进化从放弃使用==开始！</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -499,9 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/06/webpack + react + react-router + redux最佳实践/" itemprop="url">webpack + react + react-router + redux最佳实践</a></h1>
+          <h1 class="post-title" itemprop="name headline">webpack + react + react-router + redux最佳实践</h1>
         
 
         <div class="post-meta">
@@ -551,9 +330,7 @@
       
 
       
-        
-          
-            <h2 id="构建环境"><a href="#构建环境" class="headerlink" title="构建环境"></a>构建环境</h2><p>node 6.10.3, webpack 3.6.0, react 15.6.1, react-router 2.8.1<br>兼容IE9及以上主流浏览器，各类双核浏览器极速模式。</p>
+        <h2 id="构建环境"><a href="#构建环境" class="headerlink" title="构建环境"></a>构建环境</h2><p>node 6.10.3, webpack 3.6.0, react 15.6.1, react-router 2.8.1<br>兼容IE9及以上主流浏览器，各类双核浏览器极速模式。</p>
 <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>每个人都掌握形形色色的前端框架，无论技术流行与否，各自都用的非常舒爽。但是时间长了，会发现有很多小问题即不影响大局，却又如鲠在喉。作为一个前端技术人员，实在无法忍受，于是重构的想法应运而生。<br>重构又带来很多业务代码不兼容等问题，所以本文所写一篇webpack1.x升级至3.x的经历。</p>
 <h2 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h2><p>公司之前的项目是基于webpack 1.8.5, react15.3.2, react-router2.8.1动态路由的react框架。是我认识唯一一个从事前端超过十年的大牛构建于16年初的项目，也是我前端初窥门径的奠基石。<br>因为包管理的紊乱，webpack配置管理紊乱，构建年代久远无法兼容一些新的功能等关系。终于忍痛对其进行了静默升级。</p>
 <h2 id="webpack配置"><a href="#webpack配置" class="headerlink" title="webpack配置"></a>webpack配置</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> ExtractTextPlugin = <span class="built_in">require</span>(<span class="string">'extract-text-webpack-plugin'</span>) <span class="comment">//样式分离插件</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>&#123; <span class="comment">// 通过配置分离开发，测试，生产打包。</span></div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    devtool: options.devTool, <span class="comment">// 配置生成SourceMaps，选择合适的选项</span></div><div class="line">    entry: __dirname + <span class="string">'/config/react.app.jsx'</span>, <span class="comment">// 唯一入口文件</span></div><div class="line">    output: &#123;</div><div class="line">      path: __dirname + <span class="string">'/build/'</span>, <span class="comment">// 打包后的文件存放的地方</span></div><div class="line">      filename: options.bundleHash ? <span class="string">'assets/bundle-[hash].js'</span> : <span class="string">'bundle.js'</span>, <span class="comment">//bundle命名是否混淆</span></div><div class="line">      chunkFilename: <span class="string">'assets/chunk-[id]-[chunkhash].js'</span>,<span class="comment">//webpack code splitting chunk命名</span></div><div class="line">      publicPath: options.publicPath <span class="comment">// 打包公共路径</span></div><div class="line">    &#125;,</div><div class="line">    <span class="built_in">module</span>: &#123;<span class="comment">// 各类loaders配置</span></div><div class="line">      loaders: [&#123;</div><div class="line">        test: <span class="regexp">/\.(scss)$/</span>,</div><div class="line">        loader: ExtractTextPlugin.extract(&#123;</div><div class="line">          fallback: <span class="string">'style-loader'</span>,</div><div class="line">            use: [</div><div class="line">              &#123;<span class="attr">loader</span>: <span class="string">'css-loader'</span>, <span class="attr">options</span>: &#123;<span class="attr">module</span>: <span class="literal">true</span>&#125;&#125;,</div><div class="line">              <span class="string">'postcss-loader'</span>,</div><div class="line">              <span class="string">'sass-loader'</span></div><div class="line">            ]</div><div class="line">        &#125;)</div><div class="line">      &#125;]</div><div class="line">    &#125;,</div><div class="line">    plugins: options.plugins, <span class="comment">//webpack plugins 分离，方便管理</span></div><div class="line">    devServer: &#123;</div><div class="line">      historyApiFallback: <span class="literal">true</span>, <span class="comment">// spa单页不跳转</span></div><div class="line">      inline: <span class="literal">true</span>, <span class="comment">//热更</span></div><div class="line">      proxy: &#123; <span class="comment">//代理</span></div><div class="line">        <span class="string">'/api'</span>: &#123;</div><div class="line">          target: options.apiUrl,</div><div class="line">          changeOrigin: <span class="literal">true</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -576,8 +353,6 @@
 <li><a href="https://github.com/codingWythe/react-redux-reactRouter-start" target="_blank" rel="external">项目github</a></li>
 </ul>
 
-          
-        
       
     </div>
     
@@ -592,14 +367,44 @@
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" <i class="fa fa-tag"></i> webpack</a>
+          
+            <a href="/tags/react/" <i class="fa fa-tag"></i> react</a>
+          
+            <a href="/tags/dynamic-router/" <i class="fa fa-tag"></i> dynamic-router</a>
+          
+            <a href="/tags/frontend-style-guide/" <i class="fa fa-tag"></i> frontend-style-guide</a>
+          
+            <a href="/tags/redux/" <i class="fa fa-tag"></i> redux</a>
+          
+        </div>
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/07/JS中数据类型剖析/" rel="prev" title="JS中数据类型剖析（js基础提升之一）">
+                JS中数据类型剖析（js基础提升之一） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </div>
@@ -609,10 +414,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -620,6 +426,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -640,8 +450,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -706,6 +525,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建环境"><span class="nav-number">1.</span> <span class="nav-text">构建环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">2.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目介绍"><span class="nav-number">3.</span> <span class="nav-text">项目介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack配置"><span class="nav-number">4.</span> <span class="nav-text">webpack配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react-react-router配置"><span class="nav-number">5.</span> <span class="nav-text">react react-router配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github地址"><span class="nav-number">6.</span> <span class="nav-text">github地址</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -846,6 +681,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
