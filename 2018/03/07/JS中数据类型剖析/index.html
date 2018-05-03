@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://oy0btip7w.bkt.clouddn.com/WechatIMG12.jpeg">
 <meta property="og:image" content="http://oy0btip7w.bkt.clouddn.com/objectAnFunction.jpg">
 <meta property="og:image" content="http://oy0btip7w.bkt.clouddn.com/WX20180307-111804@2x.png">
-<meta property="og:updated_time" content="2018-03-07T10:02:38.000Z">
+<meta property="og:updated_time" content="2018-03-14T08:32:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS中数据类型剖析（js基础提升之一）">
 <meta name="twitter:description" content="背景知识大型js基础系列文章开更，自己深入理解js的同时并书写记录方便他人，予人玫瑰手有余香！  什么是数据类型，js中的数据类型什么是数据类型？很多人会心一笑，说数据类型就是数据的类型啊，还有什么其他更深层层次的解释吗？一开始我也着么认为，抱着肯定的态度打开浏览器确认一下自己的观点。于是乎下面的一段话出现在我的眼前。    数据类型在数据结构中的定义是一个值的集合以及定义在这个值集上的一组操作。">
@@ -297,7 +297,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T18:02:38+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T08:00:00+08:00">
                 2018-03-07
               </time>
             
@@ -307,6 +307,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js基础/" itemprop="url" rel="index">
+                    <span itemprop="name">js基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -402,7 +424,7 @@
 <p>我们会拿到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[]</div><div class="line">(5) [empty × 5]</div><div class="line">[1, 2, 3, 4, 5]</div></pre></td></tr></table></figure></p>
 <p>而拿到的三个数组的constructor则是js中Array()的方法。也就是说，[].<strong>proto</strong>.constructor指向了Array()方法。<br>我们传入了null，Number以及1,2,3,4,5，Array通过构造函数重载分别生成了3个数组，而这3个数组的constructor又指向了生成自己的母体的地址。而这个Array是如何下蛋的请各位看官去看看js的源码。</p>
 <p>我们理解了constructor是什么，那么这时候我们去用js去写一个我们用java写的实例。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">color</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.color = color</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.constructor(<span class="keyword">this</span>.color)</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.product = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Car is producing!!!"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.getColor = <span class="function"><span class="keyword">function</span> (<span class="params">color</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Car is "</span> + color)</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.constructor = <span class="function"><span class="keyword">function</span> (<span class="params">color</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.product()</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Car is produced'</span>)</div><div class="line">    color ? <span class="keyword">this</span>.getColor(color) : <span class="string">''</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">new</span> Car()</div><div class="line"><span class="keyword">new</span> Car(<span class="string">'blue'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">color</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.color = color</div><div class="line">    <span class="keyword">this</span>.product = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"Car is producing!!!"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.getColor = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"Car is "</span> + color)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.run = <span class="function"><span class="keyword">function</span> (<span class="params">color</span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.product()</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Car is produced'</span>)</div><div class="line">        color ? <span class="keyword">this</span>.getColor(color) : <span class="string">''</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.run(<span class="keyword">this</span>.color)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">new</span> Car()</div><div class="line"><span class="keyword">new</span> Car(<span class="string">'blue'</span>)</div></pre></td></tr></table></figure>
 <p>执行结果如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Car is producing!!!</div><div class="line">Car is produced</div><div class="line"></div><div class="line">Car is producing!!!</div><div class="line">Car is produced</div><div class="line">Car is blue</div></pre></td></tr></table></figure></p>
 <p>是不是跟java已经很相似了。因为js在诞生的时候就是仿照java来编写的，为了易用性作者故意弱化了js类的概念。但是js发展至今日又有使用类的需求，所以我们会模拟一些类的写法，具体如何模拟会在下一篇原型链说明中表述。</p>
 <p>剩下几个已经没有与constructor一样难以理解的方法，所以转来一些定义和示例方便大家阅读。以下概念及示例均转自MDN</p>
@@ -471,7 +493,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/06/webpack + react + react-router + redux最佳实践/" rel="next" title="webpack + react + react-router + redux最佳实践">
+              <a href="/2017/10/07/webpack + react + react-router + redux最佳实践/" rel="next" title="webpack + react + react-router + redux最佳实践">
                 <i class="fa fa-chevron-left"></i> webpack + react + react-router + redux最佳实践
               </a>
             
@@ -480,6 +502,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/10/JS原型链剖析/" rel="prev" title="JS原型、原型链剖析（js基础提升之二）">
+                JS原型、原型链剖析（js基础提升之二） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -560,12 +586,21 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
@@ -573,7 +608,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

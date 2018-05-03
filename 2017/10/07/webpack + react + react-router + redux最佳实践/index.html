@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="webpack,react,dynamic-router,frontend-style-guide,redux," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="构建环境node 6.10.3, webpack 3.6.0, react 15.6.1, react-router 2.8.1兼容IE9及以上主流浏览器，各类双核浏览器极速模式。 写在前面每个人都掌握形形色色的前端框架，无论技术流行与否，各自都用的非常舒爽。但是时间长了，会发现有很多小问题即不影响大局，却又如鲠在喉。作为一个前端技术人员，实在无法忍受，于是重构的想法应运而生。重构又带来很多业务代">
+<meta name="keywords" content="webpack,react,dynamic-router,frontend-style-guide,redux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack + react + react-router + redux最佳实践">
+<meta property="og:url" content="http://yoursite.com/2017/10/07/webpack + react + react-router + redux最佳实践/index.html">
+<meta property="og:site_name" content="臭脾气码农">
+<meta property="og:description" content="构建环境node 6.10.3, webpack 3.6.0, react 15.6.1, react-router 2.8.1兼容IE9及以上主流浏览器，各类双核浏览器极速模式。 写在前面每个人都掌握形形色色的前端框架，无论技术流行与否，各自都用的非常舒爽。但是时间长了，会发现有很多小问题即不影响大局，却又如鲠在喉。作为一个前端技术人员，实在无法忍受，于是重构的想法应运而生。重构又带来很多业务代">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-08T02:49:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack + react + react-router + redux最佳实践">
+<meta name="twitter:description" content="构建环境node 6.10.3, webpack 3.6.0, react 15.6.1, react-router 2.8.1兼容IE9及以上主流浏览器，各类双核浏览器极速模式。 写在前面每个人都掌握形形色色的前端框架，无论技术流行与否，各自都用的非常舒爽。但是时间长了，会发现有很多小问题即不影响大局，却又如鲠在喉。作为一个前端技术人员，实在无法忍受，于是重构的想法应运而生。重构又带来很多业务代">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/07/webpack + react + react-router + redux最佳实践/"/>
+
+
+
+
+
+  <title>webpack + react + react-router + redux最佳实践 | 臭脾气码农</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">臭脾气码农</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/07/webpack + react + react-router + redux最佳实践/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://oy0btip7w.bkt.clouddn.com/WechatIMG187.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="臭脾气码农">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">webpack + react + react-router + redux最佳实践</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-07T08:00:00+08:00">
+                2017-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架知识/" itemprop="url" rel="index">
+                    <span itemprop="name">框架知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="构建环境"><a href="#构建环境" class="headerlink" title="构建环境"></a>构建环境</h2><p>node 6.10.3, webpack 3.6.0, react 15.6.1, react-router 2.8.1<br>兼容IE9及以上主流浏览器，各类双核浏览器极速模式。</p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>每个人都掌握形形色色的前端框架，无论技术流行与否，各自都用的非常舒爽。但是时间长了，会发现有很多小问题即不影响大局，却又如鲠在喉。作为一个前端技术人员，实在无法忍受，于是重构的想法应运而生。<br>重构又带来很多业务代码不兼容等问题，所以本文所写一篇webpack1.x升级至3.x的经历。</p>
+<h2 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h2><p>公司之前的项目是基于webpack 1.8.5, react15.3.2, react-router2.8.1动态路由的react框架。是我认识唯一一个从事前端超过十年的大牛构建于16年初的项目，也是我前端初窥门径的奠基石。<br>因为包管理的紊乱，webpack配置管理紊乱，构建年代久远无法兼容一些新的功能等关系。终于忍痛对其进行了静默升级。</p>
+<h2 id="webpack配置"><a href="#webpack配置" class="headerlink" title="webpack配置"></a>webpack配置</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> ExtractTextPlugin = <span class="built_in">require</span>(<span class="string">'extract-text-webpack-plugin'</span>) <span class="comment">//样式分离插件</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>&#123; <span class="comment">// 通过配置分离开发，测试，生产打包。</span></div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    devtool: options.devTool, <span class="comment">// 配置生成SourceMaps，选择合适的选项</span></div><div class="line">    entry: __dirname + <span class="string">'/config/react.app.jsx'</span>, <span class="comment">// 唯一入口文件</span></div><div class="line">    output: &#123;</div><div class="line">      path: __dirname + <span class="string">'/build/'</span>, <span class="comment">// 打包后的文件存放的地方</span></div><div class="line">      filename: options.bundleHash ? <span class="string">'assets/bundle-[hash].js'</span> : <span class="string">'bundle.js'</span>, <span class="comment">//bundle命名是否混淆</span></div><div class="line">      chunkFilename: <span class="string">'assets/chunk-[id]-[chunkhash].js'</span>,<span class="comment">//webpack code splitting chunk命名</span></div><div class="line">      publicPath: options.publicPath <span class="comment">// 打包公共路径</span></div><div class="line">    &#125;,</div><div class="line">    <span class="built_in">module</span>: &#123;<span class="comment">// 各类loaders配置</span></div><div class="line">      loaders: [&#123;</div><div class="line">        test: <span class="regexp">/\.(scss)$/</span>,</div><div class="line">        loader: ExtractTextPlugin.extract(&#123;</div><div class="line">          fallback: <span class="string">'style-loader'</span>,</div><div class="line">            use: [</div><div class="line">              &#123;<span class="attr">loader</span>: <span class="string">'css-loader'</span>, <span class="attr">options</span>: &#123;<span class="attr">module</span>: <span class="literal">true</span>&#125;&#125;,</div><div class="line">              <span class="string">'postcss-loader'</span>,</div><div class="line">              <span class="string">'sass-loader'</span></div><div class="line">            ]</div><div class="line">        &#125;)</div><div class="line">      &#125;]</div><div class="line">    &#125;,</div><div class="line">    plugins: options.plugins, <span class="comment">//webpack plugins 分离，方便管理</span></div><div class="line">    devServer: &#123;</div><div class="line">      historyApiFallback: <span class="literal">true</span>, <span class="comment">// spa单页不跳转</span></div><div class="line">      inline: <span class="literal">true</span>, <span class="comment">//热更</span></div><div class="line">      proxy: &#123; <span class="comment">//代理</span></div><div class="line">        <span class="string">'/api'</span>: &#123;</div><div class="line">          target: options.apiUrl,</div><div class="line">          changeOrigin: <span class="literal">true</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>说明：没有贴loader全部loader，只贴了一个scss分离样式的loader，根据自己的需要配置相应的loader。</p>
+<p>dev-options配置：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'./webpack.util'</span>) <span class="comment">//工具包</span></div><div class="line"><span class="keyword">var</span> pluginsConfig = <span class="built_in">require</span>(<span class="string">'./webpack.plugins.config'</span>) <span class="comment">//插件管理包</span></div><div class="line"><span class="keyword">var</span> config = <span class="built_in">require</span>(<span class="string">'config'</span>) <span class="comment">//node config管理相关配置</span></div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = [</div><div class="line">  <span class="built_in">require</span>(<span class="string">'../webpack.config.js'</span>)(&#123;</div><div class="line">    devTool: <span class="string">'eval-source-map'</span>,</div><div class="line">    dropConsole: <span class="literal">false</span>,</div><div class="line">    publicPath: <span class="string">'http://'</span> + util.getIp + <span class="string">':'</span> + config.devPort + <span class="string">'/assets/'</span>,</div><div class="line">    bundleHash: <span class="literal">false</span>,</div><div class="line">    plugins: pluginsConfig.getDevPlugins(),</div><div class="line">    apiUrl: config.apiUrl</div><div class="line">  &#125;)</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>util工具包:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> os = <span class="built_in">require</span>(<span class="string">'os'</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getIp</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> interfaces = os.networkInterfaces()</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> k <span class="keyword">in</span> interfaces) &#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> k2 <span class="keyword">in</span> interfaces[k]) &#123;</div><div class="line">      <span class="keyword">var</span> address = interfaces[k][k2]</div><div class="line">      <span class="keyword">if</span> (address.family === <span class="string">'IPv4'</span> &amp;&amp; !address.internal) &#123;</div><div class="line">        <span class="keyword">return</span> address.address</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="string">'127.0.0.1'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  getIp: getIp()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>webpack.plugins.config配置:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</div><div class="line"><span class="keyword">let</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</div><div class="line"><span class="keyword">let</span> StatsPlugin = <span class="built_in">require</span>(<span class="string">'stats-webpack-plugin'</span>) <span class="comment">//打包状态管理插件</span></div><div class="line"><span class="keyword">let</span> ExtractTextPlugin = <span class="built_in">require</span>(<span class="string">'extract-text-webpack-plugin'</span>) <span class="comment">//样式分离插件</span></div><div class="line"><span class="keyword">let</span> OpenBrowserPlugin = <span class="built_in">require</span>(<span class="string">'open-browser-webpack-plugin'</span>) <span class="comment">//自动弹出浏览器插件</span></div><div class="line"><span class="keyword">let</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>) <span class="comment">//生成html插件</span></div><div class="line"><span class="keyword">let</span> OptimizeCssAssetsPlugin = <span class="built_in">require</span>(<span class="string">'optimize-css-assets-webpack-plugin'</span>) <span class="comment">//css压缩插件</span></div><div class="line"><span class="keyword">let</span> util = <span class="built_in">require</span>(<span class="string">'./webpack.util'</span>)</div><div class="line"><span class="keyword">let</span> getDevPlugins = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">//开发模式插件管理</span></div><div class="line">    <span class="keyword">return</span> [</div><div class="line">        <span class="keyword">new</span> ExtractTextPlugin(<span class="string">'main.css'</span>),</div><div class="line">        <span class="keyword">new</span> OpenBrowserPlugin(&#123;<span class="attr">url</span>: <span class="string">'http://'</span> + util.getIp + <span class="string">':3000/'</span>&#125;)</div><div class="line">    ]</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> getProdPlugins = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">//生产模式插件管理</span></div><div class="line">    <span class="keyword">return</span> [</div><div class="line">        <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;<span class="comment">// 压缩代码</span></div><div class="line">            compress: &#123;</div><div class="line">                warnings: <span class="literal">false</span>,</div><div class="line">                drop_console: <span class="literal">true</span></div><div class="line">            &#125;,</div><div class="line">            except: [<span class="string">'$super'</span>, <span class="string">'$'</span>, <span class="string">'exports'</span>, <span class="string">'require'</span>]<span class="comment">// 排除关键字</span></div><div class="line">        &#125;),</div><div class="line">        <span class="keyword">new</span> StatsPlugin(path.join(<span class="string">'stats.json'</span>), &#123;</div><div class="line">            chunkModules: <span class="literal">true</span>,</div><div class="line">            exclude: [</div><div class="line">                /node_modules[\\/]react(-router)?[\\/]/,</div><div class="line">                /node_modules[\\/]items-store[\\/]/</div><div class="line">            ]</div><div class="line">        &#125;),</div><div class="line">        <span class="keyword">new</span> ExtractTextPlugin(<span class="string">'assets/[name]-[contenthash].css'</span>,&#123;<span class="attr">allChunks</span>: <span class="literal">true</span>&#125;),</div><div class="line">        <span class="keyword">new</span> OptimizeCssAssetsPlugin(&#123;</div><div class="line">            cssProcessor: <span class="built_in">require</span>(<span class="string">'cssnano'</span>),</div><div class="line">            cssProcessorOptions: &#123; <span class="attr">discardComments</span>: &#123;<span class="attr">removeAll</span>: <span class="literal">true</span> &#125; &#125;,</div><div class="line">            canPrint: <span class="literal">true</span></div><div class="line">        &#125;),</div><div class="line">        <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">            filename: <span class="string">'build.html'</span>,</div><div class="line">            template: path.join(__dirname, <span class="string">'template.html'</span>),</div><div class="line">            minify:<span class="literal">false</span>,</div><div class="line">            inject: <span class="string">'body'</span>,</div><div class="line">            title: <span class="string">"****"</span>,</div><div class="line">        &#125;)</div><div class="line">    ]</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    getDevPlugins,</div><div class="line">    getProdPlugins,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="react-react-router配置"><a href="#react-react-router配置" class="headerlink" title="react react-router配置"></a>react react-router配置</h2><p>webpack打包入口即reactapp入口代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> &#123; Provider &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span></div><div class="line"><span class="keyword">import</span> ReactDom <span class="keyword">from</span> <span class="string">'react-dom'</span></div><div class="line"><span class="keyword">import</span> &#123; Router, browserHistory &#125; <span class="keyword">from</span> <span class="string">'react-router'</span></div><div class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'../app/redux/store'</span></div><div class="line"><span class="keyword">import</span> BaseApplication <span class="keyword">from</span> <span class="string">'./react.base.config/BaseApplication.jsx'</span> <span class="comment">//react组件基础容器</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> rootRoute = &#123; <span class="comment">//根路由</span></div><div class="line">  name: <span class="string">'app'</span>,</div><div class="line">  component: BaseApplication, <span class="comment">//基础容器</span></div><div class="line">  childRoutes: [&#123; <span class="comment">//子路由</span></div><div class="line">    childRoutes: [</div><div class="line">      <span class="built_in">require</span>(<span class="string">'../app/routers'</span>)</div><div class="line">    ]</div><div class="line">  &#125;]</div><div class="line">&#125;</div><div class="line"></div><div class="line">ReactDom.render((</div><div class="line">  &lt;Provider store=&#123;store&#125;&gt;</div><div class="line">    &lt;Router history=&#123;browserHistory&#125; routes=&#123;rootRoute&#125; /&gt;</div><div class="line">  &lt;<span class="regexp">/Provider&gt;</span></div><div class="line"><span class="regexp">), document.getElementById('react'))</span></div></pre></td></tr></table></figure>
+<p>react组件基础容器代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span></div><div class="line"><span class="keyword">import</span> actions <span class="keyword">from</span> <span class="string">'../../app/redux/actions'</span></div><div class="line"><span class="keyword">import</span> &#123; dispatch &#125; <span class="keyword">from</span> <span class="string">'../../app/redux/store'</span></div><div class="line"><span class="built_in">require</span>(<span class="string">'./BaseApplication.css'</span>)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Application</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span> (props) &#123;</div><div class="line">    <span class="keyword">super</span>(props)</div><div class="line">    dispatch(actions.setVars(<span class="string">'landingUrl'</span>, <span class="built_in">window</span>.location.href))</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div className=&#123;<span class="string">'noSelect'</span>&#125;&gt;</div><div class="line">        &#123;<span class="keyword">this</span>.props.children&#125;</div><div class="line">      &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">    )</span></div><div class="line"><span class="regexp">  &#125;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">const mapStateToProps = (state) =&gt; &#123;</span></div><div class="line"><span class="regexp">  return &#123;&#125;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">export default connect(mapStateToProps)(Application)</span></div></pre></td></tr></table></figure>
+<p>根据实际需要来做基础容器（可以写一些通用的方法）。也可以是一个空容器，即用来加载子路由组件即可。</p>
+<p>react-router子路由配置<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  path: <span class="string">'user'</span>,</div><div class="line">  childRoutes: [</div><div class="line">    <span class="built_in">require</span>(<span class="string">'./content'</span>),</div><div class="line">    &#123;</div><div class="line">      path: <span class="string">'login'</span>,</div><div class="line">      getComponent (nextState, cb) &#123;</div><div class="line">        <span class="built_in">require</span>.ensure([], (<span class="built_in">require</span>) =&gt; &#123;</div><div class="line">          cb(<span class="literal">null</span>, <span class="built_in">require</span>(<span class="string">'./Login.jsx'</span>).default)</div><div class="line">        &#125;)</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>webpack会根据require.ensure来进行代码分割，把请求到的代码划分为一个chunk文件。这里webpack1.x和2.x与3.x是有区别的。webpack1.x和2.x不需要添加</p>
+<blockquote>
+<p>cb(null, require(‘./Login.jsx’).default)<br>.default</p>
+</blockquote>
+<p>而3.x必须添加.default如不添加则会找不到组件且不报错。这个坑处理了很久。</p>
+<h2 id="github地址"><a href="#github地址" class="headerlink" title="github地址"></a>github地址</h2><ul>
+<li><a href="https://github.com/codingWythe/react-redux-reactRouter-start" target="_blank" rel="external">项目github</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" <i class="fa fa-tag"></i> webpack</a>
+          
+            <a href="/tags/react/" <i class="fa fa-tag"></i> react</a>
+          
+            <a href="/tags/dynamic-router/" <i class="fa fa-tag"></i> dynamic-router</a>
+          
+            <a href="/tags/frontend-style-guide/" <i class="fa fa-tag"></i> frontend-style-guide</a>
+          
+            <a href="/tags/redux/" <i class="fa fa-tag"></i> redux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/07/JS中数据类型剖析/" rel="prev" title="JS中数据类型剖析（js基础提升之一）">
+                JS中数据类型剖析（js基础提升之一） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://oy0btip7w.bkt.clouddn.com/WechatIMG187.jpeg"
+                alt="xy" />
+            
+              <p class="site-author-name" itemprop="name">xy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/codingWythe" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建环境"><span class="nav-number">1.</span> <span class="nav-text">构建环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">2.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目介绍"><span class="nav-number">3.</span> <span class="nav-text">项目介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack配置"><span class="nav-number">4.</span> <span class="nav-text">webpack配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react-react-router配置"><span class="nav-number">5.</span> <span class="nav-text">react react-router配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github地址"><span class="nav-number">6.</span> <span class="nav-text">github地址</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

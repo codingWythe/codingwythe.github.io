@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js,原型,prototype,原型链,_proto_," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="背景知识看完类型开始看原型，个人觉得原型，原型链和闭包是js的两大难点，其他的知识点都是比较容易掌握的。  什么是原型、什么是原型链 JS中，每个对象都有一个内部属性prototype,我们通常称之为原型。原型的值可以是一个对象，也可以是null。如果它的值是一个对象，则这个对象也一定有自己的原型。这样就形成了一条线性的链，我们称之为原型链。     构造函数具体概念以及如何理解请参阅JS中数据类">
+<meta name="keywords" content="js,原型,prototype,原型链,_proto_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS原型、原型链剖析（js基础提升之二）">
+<meta property="og:url" content="http://yoursite.com/2018/03/10/JS原型链剖析/index.html">
+<meta property="og:site_name" content="臭脾气码农">
+<meta property="og:description" content="背景知识看完类型开始看原型，个人觉得原型，原型链和闭包是js的两大难点，其他的知识点都是比较容易掌握的。  什么是原型、什么是原型链 JS中，每个对象都有一个内部属性prototype,我们通常称之为原型。原型的值可以是一个对象，也可以是null。如果它的值是一个对象，则这个对象也一定有自己的原型。这样就形成了一条线性的链，我们称之为原型链。     构造函数具体概念以及如何理解请参阅JS中数据类">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oy0btip7w.bkt.clouddn.com/WechatIMG1.jpeg">
+<meta property="og:image" content="http://oy0btip7w.bkt.clouddn.com/WX20180420-103202@2x.png">
+<meta property="og:image" content="http://oy0btip7w.bkt.clouddn.com/WX20180503-115427@2x.png">
+<meta property="og:updated_time" content="2018-05-03T07:50:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS原型、原型链剖析（js基础提升之二）">
+<meta name="twitter:description" content="背景知识看完类型开始看原型，个人觉得原型，原型链和闭包是js的两大难点，其他的知识点都是比较容易掌握的。  什么是原型、什么是原型链 JS中，每个对象都有一个内部属性prototype,我们通常称之为原型。原型的值可以是一个对象，也可以是null。如果它的值是一个对象，则这个对象也一定有自己的原型。这样就形成了一条线性的链，我们称之为原型链。     构造函数具体概念以及如何理解请参阅JS中数据类">
+<meta name="twitter:image" content="http://oy0btip7w.bkt.clouddn.com/WechatIMG1.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/10/JS原型链剖析/"/>
+
+
+
+
+
+  <title>JS原型、原型链剖析（js基础提升之二） | 臭脾气码农</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">臭脾气码农</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/10/JS原型链剖析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://oy0btip7w.bkt.clouddn.com/WechatIMG187.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="臭脾气码农">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS原型、原型链剖析（js基础提升之二）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-10T08:00:00+08:00">
+                2018-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js基础/" itemprop="url" rel="index">
+                    <span itemprop="name">js基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p>看完类型开始看原型，个人觉得原型，原型链和闭包是js的两大难点，其他的知识点都是比较容易掌握的。</p>
+<hr>
+<h2 id="什么是原型、什么是原型链"><a href="#什么是原型、什么是原型链" class="headerlink" title="什么是原型、什么是原型链"></a>什么是原型、什么是原型链</h2><blockquote>
+<p>JS中，每个对象都有一个内部属性prototype,我们通常称之为原型。原型的值可以是一个对象，也可以是null。如果它的值是一个对象，则这个对象也一定有自己的原型。这样就形成了一条线性的链，我们称之为原型链。  </p>
+</blockquote>
+<hr>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>具体概念以及如何理解请参阅JS中数据类型剖析，咱们只拿js示例来说事。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">color</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.color = color</div><div class="line">    <span class="keyword">this</span>.product = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"Car is producing!!!"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.getColor = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"Car is "</span> + color)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.run = <span class="function"><span class="keyword">function</span> (<span class="params">color</span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.product()</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Car is produced'</span>)</div><div class="line">        color ? <span class="keyword">this</span>.getColor(color) : <span class="string">''</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.run(<span class="keyword">this</span>.color)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> car1 = <span class="keyword">new</span> Car()</div><div class="line"><span class="keyword">let</span> car2 = <span class="keyword">new</span> Car()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>console.log(car1.constructor === Car) //true<br>console.log(car2.constructor === Car) //true<br>car1和car2都是Car实例化出来的对象，所以实例的对象的constructor指向Car</p>
+</blockquote>
+<hr>
+<h2 id="原型对象"><a href="#原型对象" class="headerlink" title="原型对象"></a>原型对象</h2><blockquote>
+<p>在JS中，每个函数对象都有一个prototype属性，这个属性指向函数的原型对象。</p>
+</blockquote>
+<p>还是上面的例子,我们换一个写法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">color, brand, country</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.color = color ? color : <span class="keyword">this</span>.color</div><div class="line">    <span class="keyword">this</span>.brand = brand ? brand : <span class="keyword">this</span>.brand</div><div class="line">    <span class="keyword">this</span>.country = country ? country : <span class="keyword">this</span>.country</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.product(<span class="keyword">this</span>.color, <span class="keyword">this</span>.brand, <span class="keyword">this</span>.country)</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.color = <span class="string">'default'</span></div><div class="line">Car.prototype.brand = <span class="string">'Volkswagen'</span></div><div class="line">Car.prototype.country = <span class="string">'Germany'</span></div><div class="line">Car.prototype.product = <span class="function"><span class="keyword">function</span>(<span class="params">color, brand, country</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Car('</span>+ brand +<span class="string">','</span> + country + <span class="string">','</span>+ color +<span class="string">') is produced'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">new</span> Car() <span class="comment">//Car(Volkswagen,Germany,default) is produced</span></div><div class="line"><span class="keyword">new</span> Car(<span class="string">'red'</span>, <span class="string">'Ferrari'</span>, <span class="string">'Italy'</span>) <span class="comment">//Car(Ferrari,Italy,red) is produced</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>这里我们得到第一个结论，Car实例化的时候有一些默认属性，如果我们不通过自定义的复写方法来修改的话，我们实例化的对象都会具有该属性。这些属性的集合叫做原型对象，如下：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Car.prototype = &#123;</div><div class="line">    color: <span class="string">'default'</span>,</div><div class="line">    brand: <span class="string">'Volkswagen'</span>,</div><div class="line">    country: <span class="string">'Germany'</span>,</div><div class="line">    product: <span class="function"><span class="keyword">function</span>(<span class="params">color, brand, country</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Car('</span>+ brand +<span class="string">','</span> + country + <span class="string">','</span>+ color +<span class="string">') is produced'</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们生成了一个造车工厂，该工厂会生产德国产默认颜色的大众汽车，当然也可以生产其他品牌国家以及不同颜色的汽车。除了color,brand,country以及product方法以外，我们的造车工厂还有一个默认的属性：constructor。所以我们的Car.prototyep也有一个constructor属性，我们上节讲过constructor是指向它父级的一个指针所以我们来尝试一下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(Car.prototype.constructor === Car) <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>该结果验证了我们的结论，同我们上节讲的对象类型一样，我们在生成新的对象的时候也会添加一个constructor（构造函数）属性，这个属性指向生成它的父对象即Car，那么我们再实例化一个vwCar：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> vwCar = <span class="keyword">new</span> Car()</div><div class="line"><span class="built_in">console</span>.log(vwCar.constructor === Car) <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>结论也是true，那么我们对比一下两行代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Car.prototype.constructor === Car</div><div class="line">vwCar.constructor === Car</div></pre></td></tr></table></figure>
+<p>vwCar.constructor是Car方法实例化的，自然，vwCar.constructor === Car。那么通过Car.prototype.constructor === Car是不是验证了，Car.prototype也是Car实例化来的呢。即：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> car = <span class="keyword">new</span> Car()</div><div class="line">Car.prototype = car</div></pre></td></tr></table></figure>
+<blockquote>
+<p>原型对象（Car.prototype）是构造函数（Car）的一个实例。</p>
+</blockquote>
+<hr>
+<h2 id="proto"><a href="#proto" class="headerlink" title="__proto__"></a>__proto__</h2><blockquote>
+<p>JS在创建对象的时候，除Object.prototype对象以外，所有对象的__proto__都指向创建这个对象的constructor的prototype。<br>上篇文章js中的数据类型中分析过Object.prototype.__proto__指向了null。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> vwCar = <span class="keyword">new</span> Car()</div><div class="line"><span class="built_in">console</span>.log(Car.prototype.constructor === Car) <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(Car.prototype === vwCar.__proto__) <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(vwCar.constructor === Car) <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>通过上面代码得出如下结构图：</p>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WechatIMG1.jpeg"></p>
+<blockquote>
+<p>es5中并不是所有浏览器都支持__proto__属性，__proto__已经添加至es6标准中。</p>
+</blockquote>
+<hr>
+<h2 id="Prototyep"><a href="#Prototyep" class="headerlink" title="Prototyep"></a>Prototyep</h2><blockquote>
+<p>Prototype是保存着它们所有实例方法的真正所在。</p>
+</blockquote>
+<p>正如我们上节所分析Object实例所有共有方法都是存在在Object.prototype中。<br>本节我们通过一个简单的类型Number来分析prototype。</p>
+<blockquote>
+<p>console.log(Number.prototype)</p>
+</blockquote>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180420-103202@2x.png"></p>
+<p>上图中Number的内置方法多多少少都不陌生。比如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> a = <span class="number">123.3213</span></div><div class="line"><span class="built_in">console</span>.log(a.toFixed(<span class="number">2</span>))</div></pre></td></tr></table></figure>
+<p>这里的toFixed方法就是从Number继承来的，而toFixed方法写在Number.prototype。</p>
+<blockquote>
+<p>(3).plus(5)如何让该语句执行结果输出一个8</p>
+</blockquote>
+<p>该题是在面试中遇到的，当时面试官打开电脑问我(3).plus(5)是啥，我想了想没有这个方法，肯定是报错呀。毕竟没有这个方法。又问如果希望它能输出一个8该如何处理。你可以在浏览器里面输入任何代码。</p>
+<p>首先我们来看。3是一个数字类型的数据。继承了Number下的所有方法，所以我们只需要在Number.prototype下定义一个plus方法即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Number</span>.prototype.plus = <span class="function"><span class="keyword">function</span>(<span class="params">number</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span> + number</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log((<span class="number">3</span>).plus(<span class="number">5</span>)) <span class="comment">// 8</span></div></pre></td></tr></table></figure>
+<p>当然在工作中我们不鼓励着么做，因为Number是系统内置对象，虽然我们可以修改它的内容，但是我们没有权利去修改任意系统内置对象，因为可能会导致其他人在使用该对象的时候出现一些莫名奇妙的bug。</p>
+<p>比如我在说明==是一个坑的时候举过的一个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    valueOf: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </div><div class="line">        x = <span class="number">2</span> </div><div class="line">        <span class="keyword">return</span> <span class="number">0</span> </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(obj == <span class="number">0</span>, x) <span class="comment">// true, 2</span></div></pre></td></tr></table></figure>
+<p>这里也是一样，我们复写了obj下的valueOf方法，结果是非常可怕的。如若我们复写了Object.prototype的内置方法，所有Object类型的数据内置方法都会出问题，结局可想而知。</p>
+<hr>
+<h2 id="总结升华"><a href="#总结升华" class="headerlink" title="总结升华"></a>总结升华</h2><blockquote>
+<p>原型和原型链是JS实现继承的一种模型。<br>原型链的形成是真正是靠__proto__而非prototype<br>引用网上某兄台的总结</p>
+</blockquote>
+<p>再写一个现阶段能理解的js类</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">color, brand, country</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.color = color ? color : <span class="keyword">this</span>.color</div><div class="line">    <span class="keyword">this</span>.brand = brand ? brand : <span class="keyword">this</span>.brand</div><div class="line">    <span class="keyword">this</span>.country = country ? country : <span class="keyword">this</span>.country</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.color = <span class="string">'black'</span></div><div class="line">Car.prototype.brand = <span class="string">'Benz'</span></div><div class="line">Car.prototype.country = <span class="string">'Germany'</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Volkswagen</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.platform = <span class="string">'PQ35'</span></div><div class="line">    <span class="keyword">this</span>.brand = <span class="string">'Volkswagen'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MLB</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.platform = <span class="string">'MLB'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Macan</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = <span class="string">'Macan'</span></div><div class="line">    <span class="keyword">this</span>.type = <span class="string">'suv'</span></div><div class="line">    <span class="keyword">this</span>.brand = <span class="string">'Porsche'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">Volkswagen.prototype = <span class="keyword">new</span> Car()</div><div class="line">MLB.prototype = <span class="keyword">new</span> Volkswagen()</div><div class="line">Macan.prototype = <span class="keyword">new</span> MLB()</div><div class="line"></div><div class="line"><span class="keyword">let</span> myCar = <span class="keyword">new</span> Macan()</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(myCar.brand, myCar.name, myCar.type, myCar.platform, myCar.color, myCar.country)</div><div class="line"><span class="built_in">console</span>.log(myCar)</div></pre></td></tr></table></figure>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180503-115427@2x.png"></p>
+<blockquote>
+<p>奔驰发明了汽车，大众学习了奔驰的造车方法，然后创建了MLB平台，而我买了一辆基于MLB平台叫做macan的suv，是大众的子品牌保时捷</p>
+</blockquote>
+<p>可以看出，macan继承了MLB平台，MLB平台继承了Volkswagen，而Volkswagen继承了Car方法。示例有些偷懒，应该有保时捷出现在继承中。想想篇幅算了，后面会在js设计模式中好好写一下吧。  </p>
+<p>上图中的继承均是通过原型链来继承的。该继承方式正如上文引用：<br>原型和原型链是JS实现继承的一种模型<br>原型链的形成是真正是靠__proto__而非prototype  </p>
+<p>object其他的内置方法也可以通过该示例来进行检测，这里我就不贴代码了。各位自己试试可以加深对内置对象的理解。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" <i class="fa fa-tag"></i> js</a>
+          
+            <a href="/tags/原型/" <i class="fa fa-tag"></i> 原型</a>
+          
+            <a href="/tags/prototype/" <i class="fa fa-tag"></i> prototype</a>
+          
+            <a href="/tags/原型链/" <i class="fa fa-tag"></i> 原型链</a>
+          
+            <a href="/tags/proto/" <i class="fa fa-tag"></i> _proto_</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/07/JS中数据类型剖析/" rel="next" title="JS中数据类型剖析（js基础提升之一）">
+                <i class="fa fa-chevron-left"></i> JS中数据类型剖析（js基础提升之一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://oy0btip7w.bkt.clouddn.com/WechatIMG187.jpeg"
+                alt="xy" />
+            
+              <p class="site-author-name" itemprop="name">xy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/codingWythe" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景知识"><span class="nav-number">1.</span> <span class="nav-text">背景知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是原型、什么是原型链"><span class="nav-number">2.</span> <span class="nav-text">什么是原型、什么是原型链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数"><span class="nav-number">3.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型对象"><span class="nav-number">4.</span> <span class="nav-text">原型对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#proto"><span class="nav-number">5.</span> <span class="nav-text">__proto__</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prototyep"><span class="nav-number">6.</span> <span class="nav-text">Prototyep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结升华"><span class="nav-number">7.</span> <span class="nav-text">总结升华</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

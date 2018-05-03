@@ -259,6 +259,224 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/10/JS原型链剖析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://oy0btip7w.bkt.clouddn.com/WechatIMG187.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="臭脾气码农">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/10/JS原型链剖析/" itemprop="url">JS原型、原型链剖析（js基础提升之二）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-10T08:00:00+08:00">
+                2018-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js基础/" itemprop="url" rel="index">
+                    <span itemprop="name">js基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p>看完类型开始看原型，个人觉得原型，原型链和闭包是js的两大难点，其他的知识点都是比较容易掌握的。</p>
+<hr>
+<h2 id="什么是原型、什么是原型链"><a href="#什么是原型、什么是原型链" class="headerlink" title="什么是原型、什么是原型链"></a>什么是原型、什么是原型链</h2><blockquote>
+<p>JS中，每个对象都有一个内部属性prototype,我们通常称之为原型。原型的值可以是一个对象，也可以是null。如果它的值是一个对象，则这个对象也一定有自己的原型。这样就形成了一条线性的链，我们称之为原型链。  </p>
+</blockquote>
+<hr>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>具体概念以及如何理解请参阅JS中数据类型剖析，咱们只拿js示例来说事。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">color</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.color = color</div><div class="line">    <span class="keyword">this</span>.product = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"Car is producing!!!"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.getColor = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"Car is "</span> + color)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.run = <span class="function"><span class="keyword">function</span> (<span class="params">color</span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.product()</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Car is produced'</span>)</div><div class="line">        color ? <span class="keyword">this</span>.getColor(color) : <span class="string">''</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.run(<span class="keyword">this</span>.color)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> car1 = <span class="keyword">new</span> Car()</div><div class="line"><span class="keyword">let</span> car2 = <span class="keyword">new</span> Car()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>console.log(car1.constructor === Car) //true<br>console.log(car2.constructor === Car) //true<br>car1和car2都是Car实例化出来的对象，所以实例的对象的constructor指向Car</p>
+</blockquote>
+<hr>
+<h2 id="原型对象"><a href="#原型对象" class="headerlink" title="原型对象"></a>原型对象</h2><blockquote>
+<p>在JS中，每个函数对象都有一个prototype属性，这个属性指向函数的原型对象。</p>
+</blockquote>
+<p>还是上面的例子,我们换一个写法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">color, brand, country</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.color = color ? color : <span class="keyword">this</span>.color</div><div class="line">    <span class="keyword">this</span>.brand = brand ? brand : <span class="keyword">this</span>.brand</div><div class="line">    <span class="keyword">this</span>.country = country ? country : <span class="keyword">this</span>.country</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.product(<span class="keyword">this</span>.color, <span class="keyword">this</span>.brand, <span class="keyword">this</span>.country)</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.color = <span class="string">'default'</span></div><div class="line">Car.prototype.brand = <span class="string">'Volkswagen'</span></div><div class="line">Car.prototype.country = <span class="string">'Germany'</span></div><div class="line">Car.prototype.product = <span class="function"><span class="keyword">function</span>(<span class="params">color, brand, country</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Car('</span>+ brand +<span class="string">','</span> + country + <span class="string">','</span>+ color +<span class="string">') is produced'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">new</span> Car() <span class="comment">//Car(Volkswagen,Germany,default) is produced</span></div><div class="line"><span class="keyword">new</span> Car(<span class="string">'red'</span>, <span class="string">'Ferrari'</span>, <span class="string">'Italy'</span>) <span class="comment">//Car(Ferrari,Italy,red) is produced</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>这里我们得到第一个结论，Car实例化的时候有一些默认属性，如果我们不通过自定义的复写方法来修改的话，我们实例化的对象都会具有该属性。这些属性的集合叫做原型对象，如下：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Car.prototype = &#123;</div><div class="line">    color: <span class="string">'default'</span>,</div><div class="line">    brand: <span class="string">'Volkswagen'</span>,</div><div class="line">    country: <span class="string">'Germany'</span>,</div><div class="line">    product: <span class="function"><span class="keyword">function</span>(<span class="params">color, brand, country</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Car('</span>+ brand +<span class="string">','</span> + country + <span class="string">','</span>+ color +<span class="string">') is produced'</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们生成了一个造车工厂，该工厂会生产德国产默认颜色的大众汽车，当然也可以生产其他品牌国家以及不同颜色的汽车。除了color,brand,country以及product方法以外，我们的造车工厂还有一个默认的属性：constructor。所以我们的Car.prototyep也有一个constructor属性，我们上节讲过constructor是指向它父级的一个指针所以我们来尝试一下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(Car.prototype.constructor === Car) <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>该结果验证了我们的结论，同我们上节讲的对象类型一样，我们在生成新的对象的时候也会添加一个constructor（构造函数）属性，这个属性指向生成它的父对象即Car，那么我们再实例化一个vwCar：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> vwCar = <span class="keyword">new</span> Car()</div><div class="line"><span class="built_in">console</span>.log(vwCar.constructor === Car) <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>结论也是true，那么我们对比一下两行代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Car.prototype.constructor === Car</div><div class="line">vwCar.constructor === Car</div></pre></td></tr></table></figure>
+<p>vwCar.constructor是Car方法实例化的，自然，vwCar.constructor === Car。那么通过Car.prototype.constructor === Car是不是验证了，Car.prototype也是Car实例化来的呢。即：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> car = <span class="keyword">new</span> Car()</div><div class="line">Car.prototype = car</div></pre></td></tr></table></figure>
+<blockquote>
+<p>原型对象（Car.prototype）是构造函数（Car）的一个实例。</p>
+</blockquote>
+<hr>
+<h2 id="proto"><a href="#proto" class="headerlink" title="__proto__"></a>__proto__</h2><blockquote>
+<p>JS在创建对象的时候，除Object.prototype对象以外，所有对象的__proto__都指向创建这个对象的constructor的prototype。<br>上篇文章js中的数据类型中分析过Object.prototype.__proto__指向了null。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> vwCar = <span class="keyword">new</span> Car()</div><div class="line"><span class="built_in">console</span>.log(Car.prototype.constructor === Car) <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(Car.prototype === vwCar.__proto__) <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(vwCar.constructor === Car) <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>通过上面代码得出如下结构图：</p>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WechatIMG1.jpeg"></p>
+<blockquote>
+<p>es5中并不是所有浏览器都支持__proto__属性，__proto__已经添加至es6标准中。</p>
+</blockquote>
+<hr>
+<h2 id="Prototyep"><a href="#Prototyep" class="headerlink" title="Prototyep"></a>Prototyep</h2><blockquote>
+<p>Prototype是保存着它们所有实例方法的真正所在。</p>
+</blockquote>
+<p>正如我们上节所分析Object实例所有共有方法都是存在在Object.prototype中。<br>本节我们通过一个简单的类型Number来分析prototype。</p>
+<blockquote>
+<p>console.log(Number.prototype)</p>
+</blockquote>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180420-103202@2x.png"></p>
+<p>上图中Number的内置方法多多少少都不陌生。比如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> a = <span class="number">123.3213</span></div><div class="line"><span class="built_in">console</span>.log(a.toFixed(<span class="number">2</span>))</div></pre></td></tr></table></figure>
+<p>这里的toFixed方法就是从Number继承来的，而toFixed方法写在Number.prototype。</p>
+<blockquote>
+<p>(3).plus(5)如何让该语句执行结果输出一个8</p>
+</blockquote>
+<p>该题是在面试中遇到的，当时面试官打开电脑问我(3).plus(5)是啥，我想了想没有这个方法，肯定是报错呀。毕竟没有这个方法。又问如果希望它能输出一个8该如何处理。你可以在浏览器里面输入任何代码。</p>
+<p>首先我们来看。3是一个数字类型的数据。继承了Number下的所有方法，所以我们只需要在Number.prototype下定义一个plus方法即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Number</span>.prototype.plus = <span class="function"><span class="keyword">function</span>(<span class="params">number</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span> + number</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log((<span class="number">3</span>).plus(<span class="number">5</span>)) <span class="comment">// 8</span></div></pre></td></tr></table></figure>
+<p>当然在工作中我们不鼓励着么做，因为Number是系统内置对象，虽然我们可以修改它的内容，但是我们没有权利去修改任意系统内置对象，因为可能会导致其他人在使用该对象的时候出现一些莫名奇妙的bug。</p>
+<p>比如我在说明==是一个坑的时候举过的一个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    valueOf: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </div><div class="line">        x = <span class="number">2</span> </div><div class="line">        <span class="keyword">return</span> <span class="number">0</span> </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(obj == <span class="number">0</span>, x) <span class="comment">// true, 2</span></div></pre></td></tr></table></figure>
+<p>这里也是一样，我们复写了obj下的valueOf方法，结果是非常可怕的。如若我们复写了Object.prototype的内置方法，所有Object类型的数据内置方法都会出问题，结局可想而知。</p>
+<hr>
+<h2 id="总结升华"><a href="#总结升华" class="headerlink" title="总结升华"></a>总结升华</h2><blockquote>
+<p>原型和原型链是JS实现继承的一种模型。<br>原型链的形成是真正是靠__proto__而非prototype<br>引用网上某兄台的总结</p>
+</blockquote>
+<p>再写一个现阶段能理解的js类</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">color, brand, country</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.color = color ? color : <span class="keyword">this</span>.color</div><div class="line">    <span class="keyword">this</span>.brand = brand ? brand : <span class="keyword">this</span>.brand</div><div class="line">    <span class="keyword">this</span>.country = country ? country : <span class="keyword">this</span>.country</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.color = <span class="string">'black'</span></div><div class="line">Car.prototype.brand = <span class="string">'Benz'</span></div><div class="line">Car.prototype.country = <span class="string">'Germany'</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Volkswagen</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.platform = <span class="string">'PQ35'</span></div><div class="line">    <span class="keyword">this</span>.brand = <span class="string">'Volkswagen'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MLB</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.platform = <span class="string">'MLB'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Macan</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = <span class="string">'Macan'</span></div><div class="line">    <span class="keyword">this</span>.type = <span class="string">'suv'</span></div><div class="line">    <span class="keyword">this</span>.brand = <span class="string">'Porsche'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">Volkswagen.prototype = <span class="keyword">new</span> Car()</div><div class="line">MLB.prototype = <span class="keyword">new</span> Volkswagen()</div><div class="line">Macan.prototype = <span class="keyword">new</span> MLB()</div><div class="line"></div><div class="line"><span class="keyword">let</span> myCar = <span class="keyword">new</span> Macan()</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(myCar.brand, myCar.name, myCar.type, myCar.platform, myCar.color, myCar.country)</div><div class="line"><span class="built_in">console</span>.log(myCar)</div></pre></td></tr></table></figure>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180503-115427@2x.png"></p>
+<blockquote>
+<p>奔驰发明了汽车，大众学习了奔驰的造车方法，然后创建了MLB平台，而我买了一辆基于MLB平台叫做macan的suv，是大众的子品牌保时捷</p>
+</blockquote>
+<p>可以看出，macan继承了MLB平台，MLB平台继承了Volkswagen，而Volkswagen继承了Car方法。示例有些偷懒，应该有保时捷出现在继承中。想想篇幅算了，后面会在js设计模式中好好写一下吧。  </p>
+<p>上图中的继承均是通过原型链来继承的。该继承方式正如上文引用：<br>原型和原型链是JS实现继承的一种模型<br>原型链的形成是真正是靠__proto__而非prototype  </p>
+<p>object其他的内置方法也可以通过该示例来进行检测，这里我就不贴代码了。各位自己试试可以加深对内置对象的理解。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/07/JS中数据类型剖析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -290,7 +508,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T18:02:38+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T08:00:00+08:00">
                 2018-03-07
               </time>
             
@@ -300,6 +518,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js基础/" itemprop="url" rel="index">
+                    <span itemprop="name">js基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -397,7 +637,7 @@
 <p>我们会拿到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[]</div><div class="line">(5) [empty × 5]</div><div class="line">[1, 2, 3, 4, 5]</div></pre></td></tr></table></figure></p>
 <p>而拿到的三个数组的constructor则是js中Array()的方法。也就是说，[].<strong>proto</strong>.constructor指向了Array()方法。<br>我们传入了null，Number以及1,2,3,4,5，Array通过构造函数重载分别生成了3个数组，而这3个数组的constructor又指向了生成自己的母体的地址。而这个Array是如何下蛋的请各位看官去看看js的源码。</p>
 <p>我们理解了constructor是什么，那么这时候我们去用js去写一个我们用java写的实例。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">color</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.color = color</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.constructor(<span class="keyword">this</span>.color)</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.product = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Car is producing!!!"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.getColor = <span class="function"><span class="keyword">function</span> (<span class="params">color</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Car is "</span> + color)</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.constructor = <span class="function"><span class="keyword">function</span> (<span class="params">color</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.product()</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Car is produced'</span>)</div><div class="line">    color ? <span class="keyword">this</span>.getColor(color) : <span class="string">''</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">new</span> Car()</div><div class="line"><span class="keyword">new</span> Car(<span class="string">'blue'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">color</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.color = color</div><div class="line">    <span class="keyword">this</span>.product = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"Car is producing!!!"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.getColor = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"Car is "</span> + color)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.run = <span class="function"><span class="keyword">function</span> (<span class="params">color</span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.product()</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Car is produced'</span>)</div><div class="line">        color ? <span class="keyword">this</span>.getColor(color) : <span class="string">''</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.run(<span class="keyword">this</span>.color)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">new</span> Car()</div><div class="line"><span class="keyword">new</span> Car(<span class="string">'blue'</span>)</div></pre></td></tr></table></figure>
 <p>执行结果如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Car is producing!!!</div><div class="line">Car is produced</div><div class="line"></div><div class="line">Car is producing!!!</div><div class="line">Car is produced</div><div class="line">Car is blue</div></pre></td></tr></table></figure></p>
 <p>是不是跟java已经很相似了。因为js在诞生的时候就是仿照java来编写的，为了易用性作者故意弱化了js类的概念。但是js发展至今日又有使用类的需求，所以我们会模拟一些类的写法，具体如何模拟会在下一篇原型链说明中表述。</p>
 <p>剩下几个已经没有与constructor一样难以理解的方法，所以转来一些定义和示例方便大家阅读。以下概念及示例均转自MDN</p>
@@ -482,7 +722,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/06/webpack + react + react-router + redux最佳实践/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/07/webpack + react + react-router + redux最佳实践/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xy">
@@ -501,7 +741,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/06/webpack + react + react-router + redux最佳实践/" itemprop="url">webpack + react + react-router + redux最佳实践</a></h1>
+                <a class="post-title-link" href="/2017/10/07/webpack + react + react-router + redux最佳实践/" itemprop="url">webpack + react + react-router + redux最佳实践</a></h1>
         
 
         <div class="post-meta">
@@ -513,8 +753,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-06T16:20:51+08:00">
-                2018-03-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-07T08:00:00+08:00">
+                2017-10-07
               </time>
             
 
@@ -523,6 +763,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架知识/" itemprop="url" rel="index">
+                    <span itemprop="name">框架知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -660,12 +922,21 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
@@ -673,7 +944,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
