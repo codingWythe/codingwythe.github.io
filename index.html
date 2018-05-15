@@ -259,6 +259,241 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/20/This到底是个什么东西/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://oy0btip7w.bkt.clouddn.com/WechatIMG187.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="臭脾气码农">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/20/This到底是个什么东西/" itemprop="url">this到底是个什么东西（js基础提升之三）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-20T08:00:00+08:00">
+                2018-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js基础/" itemprop="url" rel="index">
+                    <span itemprop="name">js基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p>从编程入门开始学习java，就一直觉得this是一个神奇的机制，包括到现在为止，自己觉得对js中的this的理解也没到轻车熟路的地步。所以就用这篇文章跟着大家一起理解一下this它到底是个什么东西。  </p>
+<hr>
+<h2 id="this的定义"><a href="#this的定义" class="headerlink" title="this的定义"></a>this的定义</h2><blockquote>
+<p>this的绑定跟函数声明的位置没有任何的关系，只取决于函数的调用方式。当一个函数被调用时，会创建一个活动记录（有时候也称为执行上下文）。这个记录会包含函数在那里被调用（调用栈）、调用函数的方法、传入的参数等信息。在函数执行的过程中，this就是记录其中的一个属性。（转自你不知道的javascript上卷）</p>
+</blockquote>
+<hr>
+<h2 id="为什么要使用this"><a href="#为什么要使用this" class="headerlink" title="为什么要使用this"></a>为什么要使用this</h2><p>先贴上两个例子  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> willBuy = &#123;<span class="attr">name</span>: <span class="string">'Macan'</span>&#125;</div><div class="line"><span class="keyword">let</span> bought = &#123;<span class="attr">name</span>: <span class="string">'Bora'</span>&#125;</div><div class="line"></div><div class="line"><span class="comment">//例子一</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">carName</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name.toUpperCase()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">buy</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> buy = <span class="string">"I bought "</span> + carName.call(<span class="keyword">this</span>)</div><div class="line">    <span class="built_in">console</span>.log(buy)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//例子二</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">carNameWithoutThis</span>(<span class="params">context</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> context.name.toUpperCase()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">buyWithoutThis</span>(<span class="params">context</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> greeting = <span class="string">"I bought "</span> + carNameWithoutThis(context)</div><div class="line">    <span class="built_in">console</span>.log(greeting)</div><div class="line">&#125;</div><div class="line"></div><div class="line">buy.call(willBuy)</div><div class="line">buy.call(bought)</div><div class="line"></div><div class="line">buyWithoutThis(willBuy)</div><div class="line">buyWithoutThis(bought)</div></pre></td></tr></table></figure>
+<p>输出结果都是：</p>
+<blockquote>
+<p>I bought MACAN<br>I bought BORA</p>
+</blockquote>
+<p>我们列出来的只是一个简简单单买车的例子，然而在工作中不可能只传递如此简单的对象，所以当我们对象体量提升的时候使用this传递参数会比直接传递参数要爽的多。<br>例子一中通过this来隐式传递一个对象的引用，而例子二中就需要通过显式来传入对象。如果使用this，那么我们所写的方法的api将更加简洁以及利于复用。  </p>
+<p>说到这里我们得先说几个方法，call、apply、bind。</p>
+<hr>
+<h2 id="call、apply、bind"><a href="#call、apply、bind" class="headerlink" title="call、apply、bind"></a>call、apply、bind</h2><blockquote>
+<p>这三个方法都是Function的内置方法，也就是说我们定义函数的时候函数会继承这三个方法。他们的作用是重新定义该方法的this对象！</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> obj = &#123;</div><div class="line">    name: <span class="string">'wx'</span>,</div><div class="line">    job: <span class="string">'teacher'</span>,</div><div class="line">    say: <span class="function"><span class="keyword">function</span> (<span class="params">age, sex</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' '</span> + <span class="keyword">this</span>.job + <span class="string">' '</span> + age + <span class="string">' '</span> + sex)</div><div class="line">    &#125;,</div><div class="line">&#125;</div><div class="line"></div><div class="line">obj.say(<span class="string">'27'</span>, <span class="string">'female'</span>) <span class="comment">//wx teacher 27 female</span></div><div class="line">obj.say.call(&#123;<span class="attr">name</span>:<span class="string">'wxy'</span>, <span class="attr">job</span>: <span class="string">'programmer'</span>&#125;, <span class="string">'26'</span>, <span class="string">'male'</span>) <span class="comment">//wxy programmer 26 male</span></div><div class="line">obj.say.apply(&#123;<span class="attr">name</span>:<span class="string">'wxy'</span>, <span class="attr">job</span>: <span class="string">'programmer'</span>&#125;, [<span class="string">'26'</span>, <span class="string">'male'</span>]) <span class="comment">//wxy programmer 26 male</span></div><div class="line">obj.say.bind(&#123;<span class="attr">name</span>:<span class="string">'wxy'</span>, <span class="attr">job</span>: <span class="string">'programmer'</span>&#125;, <span class="string">'26'</span>, <span class="string">'male'</span>)() <span class="comment">//wxy programmer 26 male</span></div></pre></td></tr></table></figure>
+<p>call和apply的区别在于传入参数形式不通，call以函数参数形式传递参数，第一参数为this，从第二个参数开始对应say型参。而apply将say的型参作为一个数组形式传入。而bind和call的区别在于call返回函数执行结果而bind返回绑定this的函数。</p>
+<hr>
+<h2 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h2><blockquote>
+<p>如果说call，apply，bind是显示绑定this，或者说硬绑定this的话。哪我们执行方法时默认绑定的this就是默认绑定。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fooStrict</span>(<span class="params"></span>) </span>&#123;</div><div class="line"><span class="meta">    'use strict'</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</div><div class="line">&#125;</div><div class="line">foo() <span class="comment">// Window</span></div><div class="line">fooStrict() <span class="comment">//undefined</span></div></pre></td></tr></table></figure>
+<p>在非严格模式下foo调用的时候应用了this的默认绑定，所以this指向了全局即Window，而在严格模式下禁止this关键字指向全局对象，所以fooStrict的this为undefined。  </p>
+<hr>
+<h2 id="隐式绑定"><a href="#隐式绑定" class="headerlink" title="隐式绑定"></a>隐式绑定</h2><blockquote>
+<p>前文说过，this取决于函数的调用方式所以当我们调用一个函数时，通过不同的方式调用，即使该函数在堆内存中地址没有改变，this也是不同的。  </p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">doFoo</span>(<span class="params">fn</span>) </span>&#123;</div><div class="line">    fn() <span class="comment">//&lt;--注释，调用位置</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="string">'window'</span>  <span class="comment">//&lt;--注意这里必须用var，否则当this指向window时this.a会undefined</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> obj2 = &#123;</div><div class="line">    a: <span class="string">'obj2'</span>,</div><div class="line">    foo: foo</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> obj1 = &#123;</div><div class="line">    a: <span class="string">'obj1'</span>,</div><div class="line">    foo: foo,</div><div class="line">    obj2: obj2</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> bar = obj1.foo</div><div class="line"></div><div class="line">foo() <span class="comment">//window</span></div><div class="line">obj1.foo() <span class="comment">//obj1</span></div><div class="line">bar() <span class="comment">//window</span></div><div class="line">obj1.obj2.foo() <span class="comment">//obj2</span></div><div class="line">doFoo(obj1.foo) <span class="comment">//window</span></div><div class="line">setTimeout(obj1.foo) <span class="comment">//window</span></div></pre></td></tr></table></figure>
+<p>看看我们的例子我们一个一个分析： </p>
+<blockquote>
+<p>1.foo()，非严格模式下this指向window，没有异议好理解。<br>2.obj1.foo()，我们在调用foo()时，obj1为函数foo的引用函数，所以说在调用obj的时候foo被其拥有或者包含，因此foo的this被绑定到了obj上面。所以this.a = obj1.a。<br>3.bar()，虽然bar = obj1.foo，但是我们知道对于引用数据类型来说，任何的赋值都是对堆内存地址的指向，所以bar引用的是foo的地址，只是把地址传递给bar的不是foo而是obj1.foo而已。<br>4.obj1.obj2.foo()，链式引用中最后一层会覆盖调用位置所以这里的this为obj2<br>5.doFoo(obj1.foo)，回调引用时obj1.foo的调用位置为doFoo中的fn()如代码段中注释位置，则foo的this为doFoo的this。而doFoo的this在非严格模式下指向了window。<br>6.setTimeout(obj1.foo)，原理和5其实是一样的，我这里单独把setTimeout拿出来说就是强调一下，为何我们在使用setTimeout方法中我们经常会去bind(this)。</p>
+</blockquote>
+<h3 id="var、let和const"><a href="#var、let和const" class="headerlink" title="var、let和const"></a>var、let和const</h3><p>在写this的示例的时候有个小插曲，在示例里面在定义全局a的时候注释里面强调必须用var，而不是let。因为使用let时，this.a会undefined。这里我们来顺道解释下let、this和const的区别。  </p>
+<blockquote>
+<p>很多人都说const是常量，其实这个定义严格来说并不正确对于赋值类型数据来说const就是一个常量，不可以被更改。但是对于引用数据类型来说const不能被更改的仅仅是引用的地址，即使引用地址里面的值是否改变const并不能控制。  </p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> obj = &#123;<span class="attr">a</span>:<span class="number">1</span>&#125;</div><div class="line">obj.a=<span class="number">2</span></div><div class="line">obj.b=<span class="number">2</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(obj) <span class="comment">//&#123;a: 2, b: 2&#125;</span></div></pre></td></tr></table></figure>
+<p>现在我们在来说let和var，先简单的用let和var定义两个变量然后打印。</p>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180504-175728@2x.png"></p>
+<p>哎呦，var定义的变量直接挂在了window下，而let定义的变量并没有存在window下。哪let定义的a去了那里呢？</p>
+<p>我们给上面的代码加一个debugger来看看情况</p>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180504-180302@2x.png"></p>
+<p>我们看到了一个Scope，这个Scope可以理解成angular中的Scope即作用域，看到浏览器解析的a和b，我们就会发现a存在了一个叫做Script的域中，而这个Script域竟然跟Global即window是平级的。  </p>
+<p>接着我们继续输入</p>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180504-181734@2x.png"></p>
+<blockquote>
+<p>我们发现被let声明过的变量无法进行二次声明，且被var声明过的变量也无法用let进行声明，只有var能再次声明var声明过的变量。  </p>
+</blockquote>
+<p>关于变量提升及取值  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [], b = [];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</div><div class="line">    a[i] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> i</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j&lt; <span class="number">3</span>; j++) &#123;</div><div class="line">    b[j] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> j</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">a.map(<span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(value(), <span class="string">'a'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">b.map(<span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(value(), <span class="string">'b'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180507-163121@2x.png"></p>
+<p>首先先说说我们的示例，这个示例是我在网上看的，觉得这个非常的鸡贼。数组里面存的不是值而是一个function，通过function来获取变量的值。按理说我们通过function值获取的变量应该是我们在执行function的时候拿到的变量的值，正如我们this一样指向取决于执行的环境。  </p>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180509-171244@2x.png">  </p>
+<p>当然用var定义的变量说明了这个思路是正确的，然而let定义的变量却让我们的思路无法自圆其说。于是无比尴尬的我通过浏览器的解析结果找到了其中的猫腻。正如上图，a数组的函数在执行的时候，只有一个作用域即global所以a数组的函数执行的结果都是3，而b数组的函数在执行的时候有两个作用域，Block作用域每次的j值都会重新初始化一次。  </p>
+<p>代码理解如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [], b = [];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</div><div class="line">    <span class="keyword">let</span> c = i</div><div class="line">    a[i] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> c</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j&lt; <span class="number">3</span>; j++) &#123;</div><div class="line">    <span class="keyword">let</span> c = j</div><div class="line">    b[j] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> c</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">a.map(<span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(value(), <span class="string">'a'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">b.map(<span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(value(), <span class="string">'b'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>总的来说let相当于加持了执行环境的var，可以类比于this，在隐式绑定中，obj1.obj2.foo()结果为obj2的情况我们就知晓，其实foo中的this其实也是被obj2所加持的，所以this指向了obj2。let也是如此，也会被自己声明以及定义的环境影响套上一个运行环境的作用域。  </p>
+<hr>
+<h2 id="new绑定"><a href="#new绑定" class="headerlink" title="new绑定"></a>new绑定</h2><p>首先我们说一下什么是new，mdn说明如下：</p>
+<blockquote>
+<p>new 运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。</p>
+</blockquote>
+<p>也就是说我们通过new可以获取一个实例，这个实例可能是内置对象的实例或者自定义对象的实例。哪我们来看看用new和不用new有什么区别。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.a = a</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="keyword">new</span> foo(<span class="number">2</span>)</div><div class="line"><span class="built_in">console</span>.log(bar)</div><div class="line"></div><div class="line"><span class="keyword">var</span> test = foo(<span class="number">2</span>)</div><div class="line"><span class="built_in">console</span>.log(test)</div></pre></td></tr></table></figure>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180511-164631@2x.png"></p>
+<p>咦，这是什么鬼，为啥就差3个字母，能差出着么多。首先我们来分析一下通过new调用和直接调用的this是什么，直接调用的话this指向window所以test是window这个很好解释。而new创建的是一个自定义对象的实例，也就是说bar是foo的实例。所以我们拿到了一个foo的obj。既然这样哪我们强制给test绑定一个空对象，那么test就应该是一个对象而不是window了吧。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.a = a</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="keyword">new</span> foo(<span class="number">2</span>)</div><div class="line"><span class="built_in">console</span>.log(bar)</div><div class="line"></div><div class="line"><span class="keyword">var</span> test = foo.call(&#123;&#125;,<span class="number">2</span>)</div><div class="line"><span class="built_in">console</span>.log(test)</div></pre></td></tr></table></figure>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180511-165813@2x.png">  </p>
+<p>再看下去发现bar出来的是继承foo的实例，而test仅仅是一个对象。那么这时候我们再让test继承一下foo看看。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.a = a</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="keyword">new</span> foo(<span class="number">2</span>)</div><div class="line"><span class="built_in">console</span>.log(bar)</div><div class="line"></div><div class="line"><span class="keyword">var</span> test = &#123;&#125;</div><div class="line">test.__proto__ = foo.prototype</div><div class="line">test = foo.call(test,<span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(test)</div></pre></td></tr></table></figure>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180511-170258@2x.png">  </p>
+<p>这时候我们在看test和bar。他们就是一样的两个实例了。所以我们总结一下：<br>在使用new关键字来实例化对象时，会构造一个新的对象，然后该对象继承foo，并且把this绑定到该对象，。正如我们直接执行foo时所做的三件事。  </p>
+<hr>
+<h2 id="绑定优先级"><a href="#绑定优先级" class="headerlink" title="绑定优先级"></a>绑定优先级</h2><p>我们一共说了4种this的绑定方式分别为默认绑定，隐式绑定，显示绑定以及new绑定。哪当多种绑定同时存在时我们的this该何去何从，我们写出了如下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> foo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> obj = &#123;</div><div class="line">    a: <span class="string">'隐式绑定'</span>,</div><div class="line">    foo: foo</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> bar = foo.bind(&#123;<span class="attr">a</span>:<span class="string">'显示绑定'</span>&#125;)</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(obj.foo()) <span class="comment">//隐式绑定覆盖默认绑定</span></div><div class="line"><span class="built_in">console</span>.log(obj.foo.bind(&#123;<span class="attr">a</span>:<span class="string">'显示绑定'</span>&#125;)()) <span class="comment">//显示绑定覆盖隐式绑定</span></div><div class="line"><span class="built_in">console</span>.log(bar()) <span class="comment">//显示绑定覆盖默认绑定</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> bar()) <span class="comment">//new绑定覆盖显示绑定</span></div></pre></td></tr></table></figure>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180511-173459@2x.png">  </p>
+<blockquote>
+<p>this绑定优先级 new &gt; bind,call,apply &gt; 隐式绑定 &gt; 默认绑定</p>
+</blockquote>
+<hr>
+<h2 id="箭头函数的this"><a href="#箭头函数的this" class="headerlink" title="箭头函数的this"></a>箭头函数的this</h2><p>什么是箭头函数，箭头函数对this有什么影响？</p>
+<blockquote>
+<p>箭头函数表达式的语法比函数表达式更短，并且不绑定自己的this，arguments，super或new.target。这些函数表达式最适合用于非方法函数，并且它们不能用作构造函数。  </p>
+</blockquote>
+<p>从该定义中我们可以提取出以下几个观点：</p>
+<p>1.不能用作构造函数，无法用new关键字来初始化对象。<br>2.this不可通过call、apply改变，且this的值取决于箭头函数定义位置，而非上下文环境。<br>3.没有prototype属性，arguments，super或new.target。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> foo1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    a: <span class="number">1</span>,</div><div class="line">    foo: foo,</div><div class="line">    foo1: foo1</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(foo.bind(obj)(), foo.call(obj)) <span class="comment">//&#123;a: 1, foo: ƒ, foo1: ƒ&#125; &#123;a: 1, foo: ƒ, foo1: ƒ&#125;</span></div><div class="line"><span class="built_in">console</span>.log(foo1.bind(obj)(), foo1.call(obj)) <span class="comment">//window window</span></div><div class="line"><span class="built_in">console</span>.log(obj.foo(), obj.foo1()) <span class="comment">//&#123;a: 1, foo: ƒ, foo1: ƒ&#125; window</span></div></pre></td></tr></table></figure>
+<p>可见箭头函数的this为默认绑定的this，不存在隐式绑定，显示绑定，因为无法使用new关键字初始化，所以更不存在new绑定。</p>
+<h2 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h2><p>合理使用this可以让你的代码更简洁，更优雅但是隐式绑定中有很多坑得注意。</p>
+<p>1.对象中的函数会影响函数this指向。<br>2.调用函数方式会影响函数this指向。<br>3.回调函数会影响this指向。</p>
+<p>总的来说存在即合理，如果不合理的话js中也不会存在this这个关键字，重要的是理解this它到底是个什么东西。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/10/JS原型链剖析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -922,7 +1157,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -944,7 +1179,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
