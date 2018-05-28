@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="js,this,let,运行环境,var,const," />
+  <meta name="keywords" content="js,this,let,var,const,运行环境," />
 
 
 
@@ -80,7 +80,7 @@
 
 
 <meta name="description" content="背景知识从编程入门开始学习java，就一直觉得this是一个神奇的机制，包括到现在为止，自己觉得对js中的this的理解也没到轻车熟路的地步。所以就用这篇文章跟着大家一起理解一下this它到底是个什么东西。    this的定义 this的绑定跟函数声明的位置没有任何的关系，只取决于函数的调用方式。当一个函数被调用时，会创建一个活动记录（有时候也称为执行上下文）。这个记录会包含函数在那里被调用（调">
-<meta name="keywords" content="js,this,let,运行环境,var,const">
+<meta name="keywords" content="js,this,let,var,const,运行环境">
 <meta property="og:type" content="article">
 <meta property="og:title" content="this到底是个什么东西（js基础提升之三）">
 <meta property="og:url" content="http://yoursite.com/2018/03/20/This到底是个什么东西/index.html">
@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://oy0btip7w.bkt.clouddn.com/WX20180511-165813@2x.png">
 <meta property="og:image" content="http://oy0btip7w.bkt.clouddn.com/WX20180511-170258@2x.png">
 <meta property="og:image" content="http://oy0btip7w.bkt.clouddn.com/WX20180511-173459@2x.png">
-<meta property="og:updated_time" content="2018-05-15T07:11:18.000Z">
+<meta property="og:updated_time" content="2018-05-15T07:34:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="this到底是个什么东西（js基础提升之三）">
 <meta name="twitter:description" content="背景知识从编程入门开始学习java，就一直觉得this是一个神奇的机制，包括到现在为止，自己觉得对js中的this的理解也没到轻车熟路的地步。所以就用这篇文章跟着大家一起理解一下this它到底是个什么东西。    this的定义 this的绑定跟函数声明的位置没有任何的关系，只取决于函数的调用方式。当一个函数被调用时，会创建一个活动记录（有时候也称为执行上下文）。这个记录会包含函数在那里被调用（调">
@@ -453,6 +453,7 @@
 <p>1.不能用作构造函数，无法用new关键字来初始化对象。<br>2.this不可通过call、apply改变，且this的值取决于箭头函数定义位置，而非上下文环境。<br>3.没有prototype属性，arguments，super或new.target。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> foo1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    a: <span class="number">1</span>,</div><div class="line">    foo: foo,</div><div class="line">    foo1: foo1</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(foo.bind(obj)(), foo.call(obj)) <span class="comment">//&#123;a: 1, foo: ƒ, foo1: ƒ&#125; &#123;a: 1, foo: ƒ, foo1: ƒ&#125;</span></div><div class="line"><span class="built_in">console</span>.log(foo1.bind(obj)(), foo1.call(obj)) <span class="comment">//window window</span></div><div class="line"><span class="built_in">console</span>.log(obj.foo(), obj.foo1()) <span class="comment">//&#123;a: 1, foo: ƒ, foo1: ƒ&#125; window</span></div></pre></td></tr></table></figure>
 <p>可见箭头函数的this为默认绑定的this，不存在隐式绑定，显示绑定，因为无法使用new关键字初始化，所以更不存在new绑定。</p>
+<hr>
 <h2 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h2><p>合理使用this可以让你的代码更简洁，更优雅但是隐式绑定中有很多坑得注意。</p>
 <p>1.对象中的函数会影响函数this指向。<br>2.调用函数方式会影响函数this指向。<br>3.回调函数会影响this指向。</p>
 <p>总的来说存在即合理，如果不合理的话js中也不会存在this这个关键字，重要的是理解this它到底是个什么东西。</p>
@@ -479,11 +480,11 @@
           
             <a href="/tags/let/" <i class="fa fa-tag"></i> let</a>
           
-            <a href="/tags/运行环境/" <i class="fa fa-tag"></i> 运行环境</a>
-          
             <a href="/tags/var/" <i class="fa fa-tag"></i> var</a>
           
             <a href="/tags/const/" <i class="fa fa-tag"></i> const</a>
+          
+            <a href="/tags/运行环境/" <i class="fa fa-tag"></i> 运行环境</a>
           
         </div>
       
@@ -505,6 +506,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/10/经常使用而你却不知道它是闭包/" rel="prev" title="经常使用而你却不知道它是闭包（js基础提升之四）">
+                经常使用而你却不知道它是闭包（js基础提升之四） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -585,7 +590,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -607,7 +612,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
