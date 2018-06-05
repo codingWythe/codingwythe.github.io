@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js,面向对象," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="背景知识从编程懵懂期，大学老师就在讲台上强调面向对象，面向对象巴拉巴拉。从业至今写的代码并没有把这种编程思维展现的淋漓尽致，这篇文章开始梳理js中的设计模式，梳理一下多年以来的编程思路。    面向过程和面向对象这个概念本人是从毕向东毕老师的java入门开始理解的，毕老师说了一个非常形象生动的例子，即把大象装进冰箱： 面向过程：冰箱.open() -&amp;gt; 冰箱.put(‘大象’) -&amp;gt;">
+<meta name="keywords" content="js,面向对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把大象装进冰箱-面向对象编程">
+<meta property="og:url" content="http://yoursite.com/2018/05/28/把大象装进冰箱-面向对象编程/index.html">
+<meta property="og:site_name" content="臭脾气码农">
+<meta property="og:description" content="背景知识从编程懵懂期，大学老师就在讲台上强调面向对象，面向对象巴拉巴拉。从业至今写的代码并没有把这种编程思维展现的淋漓尽致，这篇文章开始梳理js中的设计模式，梳理一下多年以来的编程思路。    面向过程和面向对象这个概念本人是从毕向东毕老师的java入门开始理解的，毕老师说了一个非常形象生动的例子，即把大象装进冰箱： 面向过程：冰箱.open() -&amp;gt; 冰箱.put(‘大象’) -&amp;gt;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oy0btip7w.bkt.clouddn.com/WX20180529-185616@2x.png">
+<meta property="og:image" content="http://oy0btip7w.bkt.clouddn.com/WX20180530-171007@2x.png">
+<meta property="og:image" content="http://oy0btip7w.bkt.clouddn.com/WX20180604-171236@2x.png">
+<meta property="og:image" content="http://oy0btip7w.bkt.clouddn.com/WechatIMG1679.jpeg">
+<meta property="og:updated_time" content="2018-06-05T09:50:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="把大象装进冰箱-面向对象编程">
+<meta name="twitter:description" content="背景知识从编程懵懂期，大学老师就在讲台上强调面向对象，面向对象巴拉巴拉。从业至今写的代码并没有把这种编程思维展现的淋漓尽致，这篇文章开始梳理js中的设计模式，梳理一下多年以来的编程思路。    面向过程和面向对象这个概念本人是从毕向东毕老师的java入门开始理解的，毕老师说了一个非常形象生动的例子，即把大象装进冰箱： 面向过程：冰箱.open() -&amp;gt; 冰箱.put(‘大象’) -&amp;gt;">
+<meta name="twitter:image" content="http://oy0btip7w.bkt.clouddn.com/WX20180529-185616@2x.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/28/把大象装进冰箱-面向对象编程/"/>
+
+
+
+
+
+  <title>把大象装进冰箱-面向对象编程 | 臭脾气码农</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">臭脾气码农</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/28/把大象装进冰箱-面向对象编程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://oy0btip7w.bkt.clouddn.com/WechatIMG187.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="臭脾气码农">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">把大象装进冰箱-面向对象编程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T08:00:00+08:00">
+                2018-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js进阶/" itemprop="url" rel="index">
+                    <span itemprop="name">js进阶</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p>从编程懵懂期，大学老师就在讲台上强调面向对象，面向对象巴拉巴拉。从业至今写的代码并没有把这种编程思维展现的淋漓尽致，这篇文章开始梳理js中的设计模式，梳理一下多年以来的编程思路。  </p>
+<hr>
+<h2 id="面向过程和面向对象"><a href="#面向过程和面向对象" class="headerlink" title="面向过程和面向对象"></a>面向过程和面向对象</h2><p>这个概念本人是从毕向东毕老师的java入门开始理解的，毕老师说了一个非常形象生动的例子，即把大象装进冰箱：</p>
+<p>面向过程：冰箱.open() -&gt; 冰箱.put(‘大象’) -&gt; 冰箱.close()</p>
+<p>面向对象：冰箱.push(‘大象’)  </p>
+<p>面向过程的思路是亲力亲为，我们开门，放进去，关门，中间的过程我们一清二楚。而面向对象的观念是冰箱你提供给我一个api，这个api可以放进去东西，具体你是开门还是锯门，i dont care，我只需要知道我调用你的api即可把我的大象放进去。  </p>
+<hr>
+<h2 id="js中的面向对象"><a href="#js中的面向对象" class="headerlink" title="js中的面向对象"></a>js中的面向对象</h2><p>js基础系列一共写了4篇文章，分别是对象类型，原型链，this和闭包。个人感觉把js中的难点和重点都梳理了一遍，也是为js进阶做铺垫。虽说基础决定代码质量，但是设计模式和编程思路才是过关斩将的工作利器，有好体格更要有强大的武器。后面的代码就不会去过多的解释一些其中的原理，有什么晦涩难懂的地方尽量去翻看一下之前的文章，基本都有说明。  </p>
+<h3 id="js对象"><a href="#js对象" class="headerlink" title="js对象"></a>js对象</h3><p>都知道js中函数和对象是互相继承的，因为之前的文章有详细介绍过彼此的关系，所以我们这里把函数对象和对象归为一类统称为对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> Car = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</div><div class="line"></div><div class="line">Car.prototype = &#123;</div><div class="line">    dirve: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'开车'</span>)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;,</div><div class="line">    turnOnLight: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'开灯'</span>)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;,</div><div class="line">    turnOffLight: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'关灯'</span>)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;,</div><div class="line">    carAdaptations: <span class="function"><span class="keyword">function</span> (<span class="params">name, fn</span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>[name] = fn</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> car = <span class="keyword">new</span> Car()</div><div class="line"></div><div class="line">car.dirve().turnOnLight().turnOffLight().carAdaptations(<span class="string">'jump'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'车翻了'</span>)</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span> <span class="comment">// &lt;- 注意return this</span></div><div class="line">&#125;).jump().turnOffLight() <span class="comment">// 开车，开灯，关灯，车翻了，关灯</span></div></pre></td></tr></table></figure>
+<p>我们定义了一个车对象，该对象有默认4个方法，分别是开车，开灯，关灯和改装。我们在所有方法中包括通过改装的jump方法中都返回了this即Car对象本身所以我们实现了Car对象的链式调用。  </p>
+<p>看到这里。我们是不是发现这种调用方式非常的熟悉，很像下面的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$.fn.extend(&#123;</div><div class="line">    hello:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'hello'</span>);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span> <span class="comment">// &lt;- 注意 return this</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">$(<span class="string">'html'</span>).css(<span class="string">'color'</span>,<span class="string">'#ffffff'</span>).hello().css(<span class="string">'font-size'</span>,<span class="string">'30px'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="number">111</span>)</div><div class="line">&#125;).css(<span class="string">'background-color'</span>, <span class="string">'#000000'</span>)</div></pre></td></tr></table></figure>
+<p>对，就是我们jquery的调用方式。虽然jquery的fn.extend方法不像我们carAdaptations方法一样直接挂在原型上，但是实现原理是一样的。当然别人比我们考虑的要多得多！  </p>
+<p>注：在添加自定义方法的时候切记return this，否则无法加入链式调用大军。因为只有return this才能在函数执行完成拿到对象本身继续进行下一次调用，如果return this不存在那么在该函数执行结束后继续链式调用会报错。</p>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>面向对象编程的第一步，即将我们的冰箱封装成为一个工具，冰箱提供的方法内部实现不需要我们关心，我们只需要知道冰箱提供给我们的api即可。下面我们来用车的例子来写两种不同的封装。  </p>
+<p>1.闭包实现对象封装</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> CarClosure = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'CarClosure 被实例化啦'</span>)</div><div class="line">    <span class="keyword">let</span> carComputer = &#123; <span class="comment">// 私有属性</span></div><div class="line">        name: <span class="string">'carCompouter'</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">carComputerOpen</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 私有构建方法</span></div><div class="line">        <span class="comment">/*</span></div><div class="line"><span class="comment">         * 省略代码</span></div><div class="line"><span class="comment">         * */</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_carClosure</span>(<span class="params">color, brand, country</span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.color = color ? color : <span class="keyword">this</span>.color</div><div class="line">        <span class="keyword">this</span>.brand = brand ? brand : <span class="keyword">this</span>.brand</div><div class="line">        <span class="keyword">this</span>.country = country ? country : <span class="keyword">this</span>.country</div><div class="line">        <span class="keyword">this</span>.carComputer = carComputer <span class="comment">// &lt;- 仅用来验证是否只在内存中出现一次 私有方法和私有变量是不应该向外部提供的</span></div><div class="line">        <span class="keyword">this</span>.carComputerOpen = carComputerOpen <span class="comment">// &lt;- 同上</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    _carClosure.prototype = &#123;</div><div class="line">        color: <span class="string">'black'</span>,</div><div class="line">        brand: <span class="string">'Benz'</span>,</div><div class="line">        country: <span class="string">'Germany'</span>,</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _carClosure</div><div class="line">&#125;)()</div><div class="line"></div><div class="line"><span class="keyword">let</span> carClosure1 = <span class="keyword">new</span> CarClosure()</div><div class="line"><span class="keyword">let</span> carClosure2 = <span class="keyword">new</span> CarClosure(<span class="string">'red'</span>)</div></pre></td></tr></table></figure>
+<p>2.通过安全模式创建的类</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> CarSafe = <span class="function"><span class="keyword">function</span> (<span class="params">color, brand, country</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!(<span class="keyword">this</span> <span class="keyword">instanceof</span> CarSafe)) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CarSafe(color, brand, country)</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'CarSafe 被实例化啦'</span>)</div><div class="line">    <span class="keyword">let</span> carComputer = &#123; <span class="comment">// 私有属性</span></div><div class="line">        name: <span class="string">'carCompouter'</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">carComputerOpen</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 私有构建方法</span></div><div class="line">        <span class="comment">/*</span></div><div class="line"><span class="comment">         * 省略代码</span></div><div class="line"><span class="comment">         * */</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.color = color ? color : <span class="keyword">this</span>.color</div><div class="line">    <span class="keyword">this</span>.brand = brand ? brand : <span class="keyword">this</span>.brand</div><div class="line">    <span class="keyword">this</span>.country = country ? country : <span class="keyword">this</span>.country</div><div class="line">    <span class="keyword">this</span>.carComputer = carComputer <span class="comment">// &lt;- 仅用来验证是否只在内存中出现一次 私有方法和私有变量是不应该向外部提供的</span></div><div class="line">    <span class="keyword">this</span>.carComputerOpen = carComputerOpen <span class="comment">// &lt;- 同上</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">CarSafe.prototype = &#123;</div><div class="line">    color: <span class="string">'black'</span>,</div><div class="line">    brand: <span class="string">'Benz'</span>,</div><div class="line">    country: <span class="string">'Germany'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> carSafe1 = <span class="keyword">new</span> CarSafe()</div><div class="line"><span class="keyword">let</span> carSafe2 = <span class="keyword">new</span> CarSafe()</div><div class="line"><span class="keyword">let</span> carSafe3 = CarSafe(<span class="string">'red'</span>)</div></pre></td></tr></table></figure>
+<p>我们通过两种模式创建了两个实例化对象相同的类，第一种叫做闭包封装，顾名思义即通过闭包机制封装的对象。第二种叫安全模式封装的对象即原型封装，顾名思义无论是否通过new关键字来创建对象都是安全的。  </p>
+<p>那么通过这两种方式创建出来的对象有什么差别呢，我们统一执行一下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(carClosure1, carClosure2)</div><div class="line"><span class="built_in">console</span>.log(carClosure1.carComputerOpen === carClosure2.carComputerOpen)</div><div class="line"><span class="built_in">console</span>.log(carClosure1.carComputer === carClosure2.carComputer)</div><div class="line"><span class="built_in">console</span>.log(carSafe1, carSafe2, carSafe3)</div><div class="line"><span class="built_in">console</span>.log(carSafe1.carComputerOpen === carSafe2.carComputerOpen)</div><div class="line"><span class="built_in">console</span>.log(carSafe1.carComputer === carSafe2.carComputer)</div></pre></td></tr></table></figure>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180529-185616@2x.png"> </p>
+<p>有意思的事情来了。我们通过闭包机制实现的封装，在实例化两个对象时，carClosure只实例化了一次，而通过安全模式实现的封装每实例话一个对象carSafe即要实例话一次。于是乎我们猜想carSafe和carClosure内部私有化方法以及私有变量，carClosure中只在内存中出现一次，而carSafe则会出现多次。所以在执行验证代码中我们输出了  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(carClosure1.carComputerOpen === carClosure2.carComputerOpen)</div><div class="line"><span class="built_in">console</span>.log(carClosure1.carComputer === carClosure2.carComputer)</div><div class="line"><span class="built_in">console</span>.log(carSafe1.carComputerOpen === carSafe2.carComputerOpen)</div><div class="line"><span class="built_in">console</span>.log(carSafe1.carComputer === carSafe2.carComputer)</div></pre></td></tr></table></figure>
+<p>通过控制台输出的两个true和两个false也可以验证咱们的猜想。所以说两种封装机制在引擎内部执行的机制并不相同。各有利弊取舍看场景。  </p>
+<p>思考题来了。在写博客的时候有考虑过对闭包封装做检察长适配无new实例化，但是并没有完美解决代码如下：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> _carClosure = <span class="function"><span class="keyword">function</span> (<span class="params">color, brand, country</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.color = color ? color : <span class="keyword">this</span>.color</div><div class="line">    <span class="keyword">this</span>.brand = brand ? brand : <span class="keyword">this</span>.brand</div><div class="line">    <span class="keyword">this</span>.country = country ? country : <span class="keyword">this</span>.country</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">_carClosure.prototype = &#123;</div><div class="line">    color: <span class="string">'black'</span>,</div><div class="line">    brand: <span class="string">'Benz'</span>,</div><div class="line">    country: <span class="string">'Germany'</span>,</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> CarClosure = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> _this = &#123;&#125;</div><div class="line">    _this.__proto__ = _carClosure.prototype</div><div class="line">    <span class="keyword">return</span> _carClosure.bind(_this)</div><div class="line">&#125;)()</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(CarClosure(), <span class="keyword">new</span> CarClosure())</div></pre></td></tr></table></figure>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180530-171007@2x.png">  </p>
+<p>虽然代码中bind的_this已经做了_carClosure的原型链继承，但是在浏览器描述中并没有体现出来，不知道是不是自执行函数还是闭包对此有影响查证半天也无果。各位看官如果有自己的理解或者说上面的代码有错误的地方欢迎指正。（可以通过个人qq联系我。在微博的关于中有个人联系方式，非常欢迎拍砖。）  </p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>说到继承就有很多东西可以扯一下，因为js没有明确的类定义，所以说在js中的继承种类非常的多。我们挑几个有特点的继承方式说一下。分别是：类式继承，构造函数继承，组合继承，原型式继承和寄生式继承。我们先写一个类，然后通过不通方式来实现继承。  </p>
+<p>声明类<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">color, brand, country</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.color = color ? color : <span class="keyword">this</span>.color</div><div class="line">    <span class="keyword">this</span>.brand = brand ? brand : <span class="keyword">this</span>.brand</div><div class="line">    <span class="keyword">this</span>.country = country ? country : <span class="keyword">this</span>.country</div><div class="line">    <span class="keyword">this</span>.type = <span class="string">'car'</span></div><div class="line">    <span class="keyword">this</span>.shoe = [<span class="string">'Michelin'</span>, <span class="string">'Michelin'</span>, <span class="string">'Michelin'</span>, <span class="string">'Michelin'</span>]</div><div class="line">    <span class="keyword">this</span>.changeShoe = <span class="function"><span class="keyword">function</span> (<span class="params">count, brand</span>) </span>&#123;</div><div class="line">         <span class="keyword">this</span>.shoe[--count] = brand</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype = &#123;</div><div class="line">    color: <span class="string">'black'</span>,</div><div class="line">    brand: <span class="string">'Benz'</span>,</div><div class="line">    country: <span class="string">'Germany'</span>,</div><div class="line">    drive: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'车开了'</span>)</div><div class="line">    &#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="类式继承"><a href="#类式继承" class="headerlink" title="类式继承"></a>类式继承</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyCar</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"></div><div class="line">MyCar.prototype = <span class="keyword">new</span> Car() <span class="comment">//为MyCar实例化出的对象添加上Car的内置方法</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> car1 = <span class="keyword">new</span> MyCar()</div><div class="line"><span class="keyword">var</span> car2 = <span class="keyword">new</span> MyCar()</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(car1.color, car1.brand, car1.country) <span class="comment">// black Benz Germany 注1</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(car1 <span class="keyword">instanceof</span> MyCar) <span class="comment">// true 注2</span></div><div class="line"><span class="built_in">console</span>.log(car1 <span class="keyword">instanceof</span> Car) <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(MyCar <span class="keyword">instanceof</span> Car) <span class="comment">// false</span></div><div class="line"><span class="built_in">console</span>.log(MyCar.prototype <span class="keyword">instanceof</span> Car) <span class="comment">// true</span></div><div class="line"></div><div class="line">car2.drive() <span class="comment">// 车开了 注3</span></div><div class="line">car2.changeShoe(<span class="number">1</span>, <span class="string">'BRIDGESTONE'</span>)</div><div class="line"><span class="built_in">console</span>.log(car1.shoe) <span class="comment">// ["BRIDGESTONE", "Michelin", "Michelin", "Michelin"]</span></div></pre></td></tr></table></figure>
+<p>我们来看看类式继承的实现过程和特点，拿出我们之前的Car的例子稍加改造。然后再定义个MyCar类，然后把Car的实例赋给MyCar的原型。都知道原型对象（prototype）是为该类实例话对象添加共有方法，MyCar.prototype = new Car()的作用就是为MyCar实例化出的对象添加上Car的内置方法。于是乎MyCar的实例即继承了Car的属性和方法。我们完成了一个类式继承。  </p>
+<p>通过注1，我们可以发现car1确实拿到了Car类下的所有属性。方法当然也是有的，通过注3我们就能知道。  </p>
+<p>注释2表示的是继承关系的结构。看看就行，跟我们分析的实现过程差不多。</p>
+<p>注3得强调一下，我们通过换轮胎的通用方法修改了car2的轮胎，但是结果car1的轮胎也跟着一起变了。这是为什么。我们来分析一下：我们来看car1和car2是MyCar的实例，MyCar.prototype是Car的实例。也就是说MyCar创建的实例，下所有的实例引用的属性都指向了同一个Car实例的属性，也就是说car1和car2的引用数据类型都指向了同一个Car实例下的引用数据类型。对引用数据类型有疑问的同学请移步<a href="https://codingwythe.github.io/2018/03/07/JS%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%89%96%E6%9E%90/" target="_blank" rel="external">JS中数据类型剖析</a>。当我们修改了car2的轮胎类型时，修改的是被MyCar实例化的Car.shoe该内存地址下的数据。所以我们car1下的数据也同时发生了改变。当然不通过内置方法修改的结果也是一样，不信的话请自行尝试。  </p>
+<p>再说我们在实例化car1和car2的时候，其实MyCar已经完成了对Car的继承。所以我们无法在实例化car1和car2的时候去设置Car的可变属性，这也是类式继承的一个缺点！</p>
+<h4 id="构造函数继承"><a href="#构造函数继承" class="headerlink" title="构造函数继承"></a>构造函数继承</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyCar</span>(<span class="params">color, brand, country</span>) </span>&#123;</div><div class="line">    Car.call(<span class="keyword">this</span>, color, brand, country)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> myCar = <span class="keyword">new</span> MyCar(<span class="string">'blue'</span>)</div><div class="line"><span class="built_in">console</span>.log(myCar) <span class="comment">// MyCar &#123;color: "blue", brand: undefined, country: undefined, type: "car"&#125;</span></div><div class="line"><span class="built_in">console</span>.log(myCar.drive()) <span class="comment">// myCar.drive is not a function</span></div></pre></td></tr></table></figure>
+<p>首先我们来看构造函数式的继承是什么，即通过执行父类的构造函数获取父类的共有方法，并且给父类绑定当前类下的this来实例化当前类的对象。大白话说，MyCar实例化了一个对象，并且把这个对象丢给Car，然后Car对这个对象进行了一些修改再做返回。  </p>
+<p>this和call我们也不多说了，有疑问请移步<a href="https://codingwythe.github.io/2018/03/20/This%E5%88%B0%E5%BA%95%E6%98%AF%E4%B8%AA%E4%BB%80%E4%B9%88%E4%B8%9C%E8%A5%BF/" target="_blank" rel="external">This到底是个什么东西</a>。我们通过call方法改变了Car的this，所以Car的this已经不是拥有其默认属性的this，而是我们通过call传递给Car的MyCar的this。所以我们无法获取到Car.prototype下的属性。只能拿到Car构造函数所修改的this。这也是为什么我们能拿到type，blur。而brand和country无法获取的原因。  </p>
+<p>因为color是通过参数传递进去的，而type是Car构造函数中添加的。所以说要通过构造函数实现继承，哪必须把所有需要继承的方法和属性放在构造函数中，而子类创建的实例中，每个实例都会单独拥有一份属性和方法并且不能公用。这样代码的复用性就大大的降低了。  </p>
+<h4 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyCar</span>(<span class="params">color, brand, country</span>) </span>&#123;</div><div class="line">    Car.call(<span class="keyword">this</span>, color, brand, country)</div><div class="line">&#125;</div><div class="line"></div><div class="line">MyCar.prototype = <span class="keyword">new</span> Car()</div><div class="line"></div><div class="line"><span class="keyword">var</span> car1 = <span class="keyword">new</span> MyCar()</div><div class="line"><span class="keyword">var</span> car2 = <span class="keyword">new</span> MyCar()</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(car1.color, car1.brand, car1.country) <span class="comment">// red Benz Germany</span></div><div class="line"></div><div class="line">car1.drive() <span class="comment">// 车开了</span></div><div class="line">car2.changeShoe(<span class="number">1</span>, <span class="string">'BRIDGESTONE'</span>) </div><div class="line"><span class="built_in">console</span>.log(car1.shoe) <span class="comment">// ["Michelin", "Michelin", "Michelin", "Michelin"]</span></div></pre></td></tr></table></figure>
+<p>组合继承顾名思义就是类式继承和构造函数继承一起。我们通过类式继承拿到共有方法，然后每次实例实例化MyCar的时候再实例化一次Car所以car1和car2并没有指向同一个Car实例。当然他们继承的引用数据类型的属性并没有指向同一个地址。也就不会发生冲突，且继承了Car.prototype的方法。  </p>
+<p>正因为我们在类式继承时实例化了一次Car，且在每次实例化MyCar时都会实例化一次Car，所以该继承方式也是有缺点的，因为Car的构造函数会被多次调用。</p>
+<h4 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h4><p>所谓原型式继承即为：通过已有的对象创建一个新的对象，且不必创建新的对象类型。拿代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">platfrom</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">PLATFROM</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    &#125;</div><div class="line">    PLATFROM.prototype = o</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PLATFROM()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> car = &#123;</div><div class="line">    color: <span class="string">'black'</span>,</div><div class="line">    brand: <span class="string">'Benz'</span>,</div><div class="line">    country: <span class="string">'Germany'</span>,</div><div class="line">    shoe: [<span class="string">'Michelin'</span>, <span class="string">'Michelin'</span>, <span class="string">'Michelin'</span>, <span class="string">'Michelin'</span>],</div><div class="line">    drive: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'车开了'</span>)</div><div class="line">    &#125;,</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> newCar = <span class="keyword">new</span> platfrom(car);</div><div class="line"><span class="built_in">console</span>.log(newCar.shoe) <span class="comment">// ["Michelin", "Michelin", "Michelin", "Michelin"]</span></div><div class="line">newCar.shoe[<span class="number">0</span>] = <span class="string">'BRIDGESTONE'</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> platfrom(car).shoe) <span class="comment">// ["BRIDGESTONE", "Michelin", "Michelin", "Michelin"]</span></div></pre></td></tr></table></figure>
+<p>和类式继承很像，只不过原型式继承更像通过流水线或者平台去copy一个产品原型。car即为产品原型，我们拿平台方法platfrom去copy产品原型可以得到无数量车来实现继承。此类模式的继承和类式继承一样在操作引用数据类型时也会发生连锁改变。具体原因跟类式继承相同。</p>
+<h4 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h4><p>如果构造函数式继承是类式继承的升级版，那么寄生式继承则为原型式继承的升级版。上代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">platfrom</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">PLATFROM</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    PLATFROM.prototype = o</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PLATFROM()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> car = &#123;</div><div class="line">    color: <span class="string">'black'</span>,</div><div class="line">    brand: <span class="string">'Benz'</span>,</div><div class="line">    country: <span class="string">'Germany'</span>,</div><div class="line">    drive: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'车开了'</span>)</div><div class="line">    &#125;,</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">carFactory</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> o = <span class="keyword">new</span> platfrom(obj)</div><div class="line">    o.shoe = [<span class="string">'Michelin'</span>, <span class="string">'Michelin'</span>, <span class="string">'Michelin'</span>, <span class="string">'Michelin'</span>]</div><div class="line">    o.changeShoe = <span class="function"><span class="keyword">function</span> (<span class="params">count, brand</span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.shoe[--count] = brand</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> o</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> newCar = carFactory(car)</div><div class="line"><span class="keyword">let</span> newCar2 = carFactory(car)</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(newCar.shoe) <span class="comment">// ["Michelin", "Michelin", "Michelin", "Michelin"]</span></div><div class="line"><span class="built_in">console</span>.log(newCar.changeShoe(<span class="number">1</span>, <span class="string">'BRIDGESTONE'</span>).shoe)</div><div class="line"><span class="built_in">console</span>.log(newCar2.shoe) <span class="comment">// ["BRIDGESTONE", "Michelin", "Michelin", "Michelin"]</span></div></pre></td></tr></table></figure>
+<p>寄生式继承可以理解为：嗯哼，我大众很厉害，有原型产品，有生产产品的平台，有MQB有PQ35，还有一汽和上汽。我把原型和平台给到工厂。工厂再添加一些自己的配件于是乎捷达和桑塔纳，朗逸和宝来，帕萨特和迈腾都问世了！</p>
+<h4 id="寄生组合式继承"><a href="#寄生组合式继承" class="headerlink" title="寄生组合式继承"></a>寄生组合式继承</h4><p>先贴代码再BB。不以代码为基础的扯淡都是耍流氓！注意前方高能，代码又绕又复杂，请备好纸巾！</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">platfrom</span>(<span class="params">o</span>) </span>&#123; <span class="comment">// 平台</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">PLATFROM</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">    PLATFROM.prototype = o</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PLATFROM()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">platfromEnhance</span>(<span class="params">carFactory, carModule</span>) </span>&#123; <span class="comment">// 增强平台</span></div><div class="line">    <span class="keyword">var</span> p = platfrom(carModule.prototype)</div><div class="line">    p.constructor = carFactory</div><div class="line">    carFactory.prototype = p</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">CarModule</span>(<span class="params">color, brand, country</span>) </span>&#123; <span class="comment">// 产品原型</span></div><div class="line">    <span class="keyword">this</span>.color = color ? color : <span class="keyword">this</span>.color</div><div class="line">    <span class="keyword">this</span>.brand = brand ? brand : <span class="keyword">this</span>.brand</div><div class="line">    <span class="keyword">this</span>.country = country ? country : <span class="keyword">this</span>.country</div><div class="line">&#125;</div><div class="line"></div><div class="line">CarModule.prototype = &#123; <span class="comment">// 产品原型属性</span></div><div class="line">    color: <span class="string">'black'</span>,</div><div class="line">    brand: <span class="string">'Benz'</span>,</div><div class="line">    country: <span class="string">'Germany'</span>,</div><div class="line">    drive: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'车开了'</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Volkswagen</span>(<span class="params">color</span>) </span>&#123; <span class="comment">// 造车工厂</span></div><div class="line">    CarModule.call(<span class="keyword">this</span>, color)</div><div class="line">    <span class="keyword">this</span>.platform = <span class="string">'PQ35'</span></div><div class="line">    <span class="keyword">this</span>.color = color ? color : <span class="keyword">this</span>.color</div><div class="line">    <span class="keyword">this</span>.brand = <span class="string">'Volkswagen'</span></div><div class="line">    <span class="keyword">this</span>.shoe = [<span class="string">'Michelin'</span>, <span class="string">'Michelin'</span>, <span class="string">'Michelin'</span>, <span class="string">'Michelin'</span>]</div><div class="line">&#125;</div><div class="line"></div><div class="line">platfromEnhance(Volkswagen, CarModule) <span class="comment">// 工厂借鉴</span></div><div class="line"></div><div class="line"><span class="comment">// 不要写成Volkswagen.prototype = &#123;&#125; 形式。该形式为赋值形式，会覆盖CarModule的方法</span></div><div class="line"><span class="comment">// 工厂添加自定义方法</span></div><div class="line">Volkswagen.prototype.changeShoe = <span class="function"><span class="keyword">function</span> (<span class="params">count, brand</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.shoe[--count] = brand</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">Volkswagen.prototype.getShoe = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.shoe</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> car1 = <span class="keyword">new</span> Volkswagen()</div><div class="line"><span class="keyword">var</span> car2 = <span class="keyword">new</span> Volkswagen(<span class="string">'red'</span>)</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(car1)</div><div class="line"><span class="built_in">console</span>.log(car2)</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(car1.changeShoe(<span class="number">1</span>, <span class="string">'BRIDGESTONE'</span>).getShoe())</div><div class="line"><span class="built_in">console</span>.log(car2.getShoe())</div><div class="line">car1.drive()</div></pre></td></tr></table></figure>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180604-171236@2x.png">  </p>
+<p>先说一下每个注释的解释，这个东西是啥，要它来干啥，有它的好处。一个漂亮的代码段当然是用更少的代码实现更美个功能。<br>平台：定义一个空函数，该函数仅做继承使用。在造车方面，我们可以理解成框架和底盘。<br>增强平台：给平台附加一些功能，从模型中拿一些功能和属性添加在平台上面。<br>产品原型&amp;产品默认属性：我们产品的构造函数，添加默认属性和方法。<br>造车工厂：实例化量产车型的工厂。用来copy产品原型，添加自定义方法或者修改默认属性。  </p>
+<p>再说各个功能之间的关系。他们是怎么连接起来的。<br>先看平台和工厂借鉴。其实所有产品，除了发明者以外都属于借鉴。比如汽车这个东西当然是奔驰发明的汽车，所以其他品牌无论怎么说，说到底都属于借鉴奔驰的方法。哪怕它有自己强大的流水线，在最初的时候也是借鉴发明者的想法，思路和技术。类比一下国内的有名车企。这里没有任何指责的意思，站在巨人肩上当然可以走的更快看的更远。<br>在这里得多谢好多人，因为本人的博客也是借鉴各路大神的书以及文章才能写的出来的。例举几本个人觉得比较好的书大家可以看看：<br>《JavaScript高级程序设计》作者是(美)(Nicholas C.Zakas)扎卡斯 —— 入门必，提升必看，看一遍一遍的看。<br>《你不知道的javascript》【作者】[美]辛普森（ Kyle Simpson ） —— 好书，闭包，this等等都讲的特别好。茅塞顿开。<br>《JavaScript设计模式》张容铭 —— 设计模式写的很好很生动，本篇就是从这边书梳理来的。<br>其他就是一些概念的整理查阅，就很多了，比如MDN、方应航方方老师等各路知乎大神。虽然没有直接提问和引用，到底还是看过你们的文章才能初窥js门径的。  </p>
+<p>好了先扯着么多，扯的有点远，但是怎么说，其实任何人都离不开借鉴。  </p>
+<p>回归正题，说我们的平台和工厂借鉴。我们在执行platfromEnhance(Volkswagen, CarModule)这句代码的时候，把车模型的原型交给平台，平台按照模型构建了一个对象框架反回给增强平台。然后优化框架让框架符合造车工厂的流水线，p.constructor = carFactory不能量产的汽车都不是好对象！当然流水线生产出的汽车得有车的默认属性和方法。即carFactory.prototype = p。  </p>
+<p>从逻辑层面我们说明的其中的关系。下面我们从代码底层描述一下这几者的关系：  </p>
+<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WechatIMG1679.jpeg">  </p>
+<p>梳理一下还是比较好理解的。</p>
+<h4 id="关于多继承"><a href="#关于多继承" class="headerlink" title="关于多继承"></a>关于多继承</h4><p>多继承其实有太多太多解决方案了，其实无非是复制或者其他方式来实现多对象继承。后面单独写一篇博客吧，再揉在一起的话篇幅太长了。  </p>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p>多态是什么意思呢，即同一个方法会根据传入参数的不同拿到不同的结果。然后很多人就在这里想到了java中的函数重载，其实不然。函数重载虽然是通过同一个函数名调用，但是在底层的逻辑中，重载的函数并不是同一个方法。  </p>
+<p>而多态调用的是同一个函数，只是拿到的结果不同。写个简单的例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">buyCar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> carBrandList = [<span class="string">'Volkswagen'</span>, <span class="string">'Audi'</span>, <span class="string">'BMW'</span>, <span class="string">'Benz'</span>, <span class="string">'Porsche'</span>]</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">randomCar</span>(<span class="params">count</span>) </span>&#123;</div><div class="line">        <span class="keyword">let</span> countN = count ? count : <span class="number">2</span></div><div class="line">        <span class="keyword">return</span> carBrandList[<span class="built_in">parseInt</span>((<span class="built_in">Math</span>.random() * <span class="number">10</span>) / countN)]</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">buyCarAndMoney</span>(<span class="params">money</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">isNaN</span>(money)) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="string">'type of money is error'</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">let</span> moneyCount = money / <span class="number">10000</span></div><div class="line">        <span class="keyword">if</span> (moneyCount &lt; <span class="number">3</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">'这点钱就不要凑热闹了！'</span></div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> ((<span class="number">3</span> &lt;= moneyCount) &amp;&amp; (moneyCount &lt; <span class="number">20</span>)) &#123;</div><div class="line">            <span class="keyword">return</span> randomCar(<span class="number">10</span>)</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> ((<span class="number">20</span> &lt;= moneyCount) &amp;&amp; (moneyCount &lt; <span class="number">50</span>)) &#123;</div><div class="line">            <span class="keyword">return</span> randomCar(<span class="number">2.5</span>)</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> randomCar()</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.buyCar = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">switch</span> (<span class="built_in">arguments</span>.length) &#123;</div><div class="line">            <span class="keyword">case</span> <span class="number">0</span>:</div><div class="line">                <span class="keyword">return</span> randomCar()</div><div class="line">            <span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">                <span class="keyword">return</span> buyCarAndMoney(<span class="built_in">arguments</span>[<span class="number">0</span>])</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> myCar = <span class="keyword">new</span> buyCar()</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(myCar.buyCar()) <span class="comment">// 5选一随机</span></div><div class="line"><span class="built_in">console</span>.log(myCar.buyCar(<span class="string">'3000'</span>)) <span class="comment">// 根据金额随机</span></div></pre></td></tr></table></figure>
+<hr>
+<h2 id="冰箱我要把大象放进去"><a href="#冰箱我要把大象放进去" class="headerlink" title="冰箱我要把大象放进去"></a>冰箱我要把大象放进去</h2><p>把大象放进冰箱和冰箱我要把大象放进去的区别仅仅是思维模式的不同，这也就是面向过程编程和面向对象编程的区别。  </p>
+<p>因为在大型项目构建的时候并不是说一个人能完成的，我们需要配合，而面向对象的思维更适合这种协作式的开发，并且可移植性及扩展性更强！  </p>
+<p>而js也不是那个仅仅用验证用户名和密码的脚本语言。它可以完成更多的功能，适用更多的场景。当然我们的编程思维也需要迭代更新。让自己的代码更加健壮、优雅可移植性更强，我想是每一个程序员应有的基本素质吧。  </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" <i class="fa fa-tag"></i> js</a>
+          
+            <a href="/tags/面向对象/" <i class="fa fa-tag"></i> 面向对象</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/10/经常使用而你却不知道它是闭包/" rel="next" title="经常使用而你却不知道它是闭包（js基础提升之四）">
+                <i class="fa fa-chevron-left"></i> 经常使用而你却不知道它是闭包（js基础提升之四）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://oy0btip7w.bkt.clouddn.com/WechatIMG187.jpeg"
+                alt="xy" />
+            
+              <p class="site-author-name" itemprop="name">xy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/codingWythe" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景知识"><span class="nav-number">1.</span> <span class="nav-text">背景知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向过程和面向对象"><span class="nav-number">2.</span> <span class="nav-text">面向过程和面向对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js中的面向对象"><span class="nav-number">3.</span> <span class="nav-text">js中的面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#js对象"><span class="nav-number">3.1.</span> <span class="nav-text">js对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#封装"><span class="nav-number">3.2.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承"><span class="nav-number">3.3.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类式继承"><span class="nav-number">3.3.1.</span> <span class="nav-text">类式继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构造函数继承"><span class="nav-number">3.3.2.</span> <span class="nav-text">构造函数继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组合继承"><span class="nav-number">3.3.3.</span> <span class="nav-text">组合继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原型式继承"><span class="nav-number">3.3.4.</span> <span class="nav-text">原型式继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#寄生式继承"><span class="nav-number">3.3.5.</span> <span class="nav-text">寄生式继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#寄生组合式继承"><span class="nav-number">3.3.6.</span> <span class="nav-text">寄生组合式继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于多继承"><span class="nav-number">3.3.7.</span> <span class="nav-text">关于多继承</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多态"><span class="nav-number">3.4.</span> <span class="nav-text">多态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冰箱我要把大象放进去"><span class="nav-number">4.</span> <span class="nav-text">冰箱我要把大象放进去</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
