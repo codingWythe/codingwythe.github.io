@@ -80,21 +80,21 @@
 
 
 <meta name="description" content="背景知识大型js基础系列文章开更，自己深入理解js的同时并书写记录方便他人，予人玫瑰手有余香！  什么是数据类型，js中的数据类型什么是数据类型？很多人会心一笑，说数据类型就是数据的类型啊，还有什么其他更深层层次的解释吗？一开始我也着么认为，抱着肯定的态度打开浏览器确认一下自己的观点。于是乎下面的一段话出现在我的眼前。    数据类型在数据结构中的定义是一个值的集合以及定义在这个值集上的一组操作。">
-<meta name="keywords" content="js,数据类型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS中数据类型剖析（js基础提升之一）">
-<meta property="og:url" content="http://yoursite.com/2018/03/07/JS中数据类型剖析/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/03/07/JS%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%89%96%E6%9E%90/index.html">
 <meta property="og:site_name" content="臭脾气码农">
 <meta property="og:description" content="背景知识大型js基础系列文章开更，自己深入理解js的同时并书写记录方便他人，予人玫瑰手有余香！  什么是数据类型，js中的数据类型什么是数据类型？很多人会心一笑，说数据类型就是数据的类型啊，还有什么其他更深层层次的解释吗？一开始我也着么认为，抱着肯定的态度打开浏览器确认一下自己的观点。于是乎下面的一段话出现在我的眼前。    数据类型在数据结构中的定义是一个值的集合以及定义在这个值集上的一组操作。">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.w3school.com.cn//i/ct_js_value.gif">
 <meta property="og:image" content="http://oy0btip7w.bkt.clouddn.com/WechatIMG12.jpeg">
 <meta property="og:image" content="http://oy0btip7w.bkt.clouddn.com/objectAnFunction.jpg">
 <meta property="og:image" content="http://oy0btip7w.bkt.clouddn.com/WX20180307-111804@2x.png">
-<meta property="og:updated_time" content="2018-03-14T08:32:35.000Z">
+<meta property="article:published_time" content="2018-03-07T00:00:00.000Z">
+<meta property="article:modified_time" content="2018-09-08T07:51:38.000Z">
+<meta property="article:author" content="xy">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="数据类型">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS中数据类型剖析（js基础提升之一）">
-<meta name="twitter:description" content="背景知识大型js基础系列文章开更，自己深入理解js的同时并书写记录方便他人，予人玫瑰手有余香！  什么是数据类型，js中的数据类型什么是数据类型？很多人会心一笑，说数据类型就是数据的类型啊，还有什么其他更深层层次的解释吗？一开始我也着么认为，抱着肯定的态度打开浏览器确认一下自己的观点。于是乎下面的一段话出现在我的眼前。    数据类型在数据结构中的定义是一个值的集合以及定义在这个值集上的一组操作。">
 <meta name="twitter:image" content="http://www.w3school.com.cn//i/ct_js_value.gif">
 
 
@@ -141,7 +141,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -187,7 +187,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -197,7 +197,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -207,7 +207,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -217,7 +217,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -227,7 +227,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -268,7 +268,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/07/JS中数据类型剖析/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/07/JS%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%89%96%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xy">
@@ -320,7 +320,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/js基础/" itemprop="url" rel="index">
+                  <a href="/categories/js%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
                     <span itemprop="name">js基础</span>
                   </a>
                 </span>
@@ -371,19 +371,21 @@
 <blockquote>
 <p>简单数据类型：存储在栈（stack）中的简单数据段，也就是说，它们的值直接存储在变量访问的位置。<br>复杂数据类型：存储在堆（heap）中的对象，也就是说，存储在变量处的值是一个指针（point），指向存储对象的内存处。</p>
 </blockquote>
-<p>简单数据类型一共有五种，分别为：Undefine,Null,Boolean,Number,String而复杂数据类型只有一种即为Object一张w3school的图帮你理解两者之间的区别。<br><img style="border:none" src="http://www.w3school.com.cn//i/ct_js_value.gif"></p>
+<p>简单数据类型一共有五种，分别为：Undefine,Null,Boolean,Number,String而复杂数据类型只有一种即为Object一张w3school的图帮你理解两者之间的区别。<br><img style='border:none' src='http://www.w3school.com.cn//i/ct_js_value.gif'/></p>
 <blockquote>
 <p>代码方式理解如下：</p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> stringA = <span class="string">'abc'</span></div><div class="line"><span class="keyword">let</span> stringB = stringA</div><div class="line"><span class="built_in">console</span>.log(stringA,stringB) <span class="comment">//abc abc</span></div><div class="line">stringA = <span class="string">'bcd'</span></div><div class="line"><span class="built_in">console</span>.log(stringA,stringB) <span class="comment">//bcd abc</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> stringA = <span class="string">'abc'</span></span><br><span class="line"><span class="keyword">let</span> stringB = stringA</span><br><span class="line"><span class="built_in">console</span>.log(stringA,stringB) <span class="comment">//abc abc</span></span><br><span class="line">stringA = <span class="string">'bcd'</span></span><br><span class="line"><span class="built_in">console</span>.log(stringA,stringB) <span class="comment">//bcd abc</span></span><br></pre></td></tr></table></figure>
 <p>因为是简单数据类型，所以在改变A的时候B的值并没有改变，因为简单数据类型是在栈内存中的赋值操作。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> objA = &#123;<span class="attr">string</span>:<span class="string">'abc'</span>&#125;</div><div class="line"><span class="keyword">let</span> objB = objA</div><div class="line"><span class="built_in">console</span>.log(objA,objB) <span class="comment">// &#123;string: "abc"&#125; &#123;string: "abc"&#125;</span></div><div class="line">objA.string = <span class="string">'bcd'</span></div><div class="line"><span class="built_in">console</span>.log(objA,objB) <span class="comment">// &#123;string: "bcd"&#125; &#123;string: "bcd"&#125;</span></div></pre></td></tr></table></figure>
-<p>我们定义了一个objA, objA赋值了一个对象{string:’abc’}的地址，姑且假设{string:’abc’}的地址为0x0012ffxx，这时候我们又定义了一个objB,同时把0x0012ffxx的地址赋值给objB,所以我们第一步输出为{string: “abc”} {string: “abc”}，再之后我们把0x0012ffxx地址上的原始值给改了，所以objA和objB同时发生了改变。接着往下看。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">objA = &#123;<span class="attr">string</span>:<span class="string">'efg'</span>&#125;</div><div class="line"><span class="built_in">console</span>.log(objA,objB) <span class="comment">// &#123;string: "efg"&#125; &#123;string: "bcd"&#125;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> objA = &#123;<span class="attr">string</span>:<span class="string">'abc'</span>&#125;</span><br><span class="line"><span class="keyword">let</span> objB = objA</span><br><span class="line"><span class="built_in">console</span>.log(objA,objB) <span class="comment">// &#123;string: "abc"&#125; &#123;string: "abc"&#125;</span></span><br><span class="line">objA.string = <span class="string">'bcd'</span></span><br><span class="line"><span class="built_in">console</span>.log(objA,objB) <span class="comment">// &#123;string: "bcd"&#125; &#123;string: "bcd"&#125;</span></span><br></pre></td></tr></table></figure>
+<p>我们定义了一个objA, objA赋值了一个对象{string:’abc’}的地址，姑且假设{string:’abc’}的地址为0x0012ffxx，这时候我们又定义了一个objB,同时把0x0012ffxx的地址赋值给objB,所以我们第一步输出为{string: “abc”} {string: “abc”}，再之后我们把0x0012ffxx地址上的原始值给改了，所以objA和objB同时发生了改变。接着往下看。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">objA = &#123;<span class="attr">string</span>:<span class="string">'efg'</span>&#125;</span><br><span class="line"><span class="built_in">console</span>.log(objA,objB) <span class="comment">// &#123;string: "efg"&#125; &#123;string: "bcd"&#125;</span></span><br></pre></td></tr></table></figure>
 <p>这时候我们又干了一件事，我们把objA的赋值地址给改了，而objB则没有发生改变，所以objA和objB不同了，objB还是0x0012ffxx之前的地址，而objA指向了堆内存中的另一个地址。这个就是有时候我们需要做对象深拷贝的原因。</p>
 <blockquote>
 <p>图片理解（自己画的质量不是特别高，理解万岁）</p>
 </blockquote>
-<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WechatIMG12.jpeg">  </p>
+<img style='border:none' src="http://oy0btip7w.bkt.clouddn.com/WechatIMG12.jpeg">  
+
 <hr>
 <h2 id="复杂数据类型概述（也叫引用数据类型）"><a href="#复杂数据类型概述（也叫引用数据类型）" class="headerlink" title="复杂数据类型概述（也叫引用数据类型）"></a>复杂数据类型概述（也叫引用数据类型）</h2><p>复杂数据类型也就是我们说的Object对象，用w3school的话来说：</p>
 <blockquote>
@@ -392,22 +394,25 @@
 <p>其实着么说并不完全正确，因为es5中并没有明确的给出’类’的概念，而我们现在说的类只是前辈通过对其他语言类的理解和对js的摸索模拟出的一个类。即使es6中加入了class和extends也是通过现有的继承和语法糖来实现的。 原型链和继承我们会单独拿出几篇文章来写，这里说一下复杂数据类型的一些概念详解。</p>
 <p>个人觉得js中除5种简单类型以外的类型都是Object类型，即对象。这6种对象通过typeof区分也会获得到6种结果，有意思的是这些结果并不是一一对应的，Undefine,Boolean,Number,String以及Object分别会拿到自己向对应的类型，而null则拿到了一个Object类型，可能是js底层代码认为null描述的是一个没有地址的对象类型而下的定义。</p>
 <p>而对于function类型来说，它并不是严格意义上的一种数据类型，它只能称之为函数对象，因为函数是一种特殊的对象，为了和其他对象有所区分，所以对函数对象有了一个特殊的描述。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">//true</span></div><div class="line"><span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span> <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">//true</span></span><br><span class="line"><span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span> <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
 <p>对你没有看错，这两个货用instanceof运算符算出来竟然是互相继承的关系，即你中有我我中有你！<br>先简单说说instanceof</p>
 <blockquote>
 <p>instanceof 可以在继承关系中用来判断一个实例是否属于它的父类型或者祖类型（即多级继承）</p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Aoo</span>(<span class="params"></span>)</span>&#123;&#125; </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;&#125; </div><div class="line">Foo.prototype = <span class="keyword">new</span> Aoo();<span class="comment">//JavaScript 原型继承</span></div><div class="line"> </div><div class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo(); </div><div class="line"><span class="built_in">console</span>.log(foo <span class="keyword">instanceof</span> Foo) <span class="comment">//true </span></div><div class="line"><span class="built_in">console</span>.log(foo <span class="keyword">instanceof</span> Aoo) <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(foo <span class="keyword">instanceof</span> <span class="built_in">Object</span>) <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Aoo</span>(<span class="params"></span>)</span>&#123;&#125; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;&#125; </span><br><span class="line">Foo.prototype = <span class="keyword">new</span> Aoo();<span class="comment">//JavaScript 原型继承</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo(); </span><br><span class="line"><span class="built_in">console</span>.log(foo <span class="keyword">instanceof</span> Foo) <span class="comment">//true </span></span><br><span class="line"><span class="built_in">console</span>.log(foo <span class="keyword">instanceof</span> Aoo) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(foo <span class="keyword">instanceof</span> <span class="built_in">Object</span>) <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
 <p>我们定义了两个函数，分别为Aoo和Foo，而Foo通过原型继承了Aoo，而foo是通过Foo new创建而来，而所有实例都是通过Object生成的，所以都为true。  </p>
 <p>这时候我们祭出一张的图来理解Function和Object的关系</p>
-<p><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/objectAnFunction.jpg"></p>
+<img style='border:none' src='http://oy0btip7w.bkt.clouddn.com/objectAnFunction.jpg'/>
+
 <p>通过图片我们得到以下几个结论：</p>
 <blockquote>
-<p>1.所有实例都或直接，或间接的继承自Object.prototype,而Object.prototype的<em>proto</em>指向null。js中除了简单数据类型一切都来自Object.prototype<br>2.Function.prototype继承自Object.prototype但Function创造了Object<br>3.Object instanceof Function为true，说明Object.prototype上有一段可以生产对象的指令，名字叫函数。<br>4.Function instanceof Object为true，说明Function也是对象。</p>
+<p>1.所有实例都或直接，或间接的继承自Object.prototype,而Object.prototype的_proto_指向null。js中除了简单数据类型一切都来自Object.prototype<br>2.Function.prototype继承自Object.prototype但Function创造了Object<br>3.Object instanceof Function为true，说明Object.prototype上有一段可以生产对象的指令，名字叫函数。<br>4.Function instanceof Object为true，说明Function也是对象。</p>
 </blockquote>
 <p>总之Function和Object可以用鸡生蛋和蛋生鸡的方式理解。</p>
-<p>既然已经追溯到根源，我们在浏览器中输入如下代码，看看Object.prototype是个什么东西。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype);</div></pre></td></tr></table></figure></p>
-<p>于是乎我们在浏览器中看到了如下几个方法：<br><img style="border:none" src="http://oy0btip7w.bkt.clouddn.com/WX20180307-111804@2x.png"></p>
+<p>既然已经追溯到根源，我们在浏览器中输入如下代码，看看Object.prototype是个什么东西。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype);</span><br></pre></td></tr></table></figure>
+
+<p>于是乎我们在浏览器中看到了如下几个方法：<br><img style='border:none' src='http://oy0btip7w.bkt.clouddn.com/WX20180307-111804@2x.png'></p>
 <blockquote>
 <p>因为篇幅的关系本文仅说明Object下的7种基本属性和方法，而get，set以及已经废弃或者非标准的方法会在原型链文章中详细说明。  </p>
 </blockquote>
@@ -415,32 +420,40 @@
 <p>返回创建实例对象的 Object 构造函数的引用。（引自MDN）</p>
 </blockquote>
 <p>构造函数是什么，很多写前端er在写js的初期，对js中的对象和类理解不深刻。所以构造函数，函数重载的概念并不是很清楚，又或着还给了大学老师。我们先温习一下java中对构造函数的定义。java中的构造函数是一种特殊的方法，主要用来初始化对象。有些类中可能存在多个构造函数，根据入参的不同生成不同的对象。<br>先拿一段java代码理解一下什么是构造函数以及重载</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span></span>&#123;</div><div class="line">	<span class="keyword">private</span> String color;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Car</span><span class="params">()</span></span>&#123;</div><div class="line">		product();</div><div class="line">		System.out.println(<span class="string">"Car is produced"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Car</span><span class="params">(String color)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>();</div><div class="line">        <span class="keyword">this</span>.color = color;</div><div class="line">        getColor(color);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">product</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"Car is producing!!!"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getColor</span><span class="params">(String color)</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Car is "</span> + color);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>随便找一个java在线编译工具来编译执行一下代码，输入：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Car();</div><div class="line"><span class="keyword">new</span> Car(blue);</div></pre></td></tr></table></figure></p>
-<p>控制台会分别输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Car is producing!!!</div><div class="line">Car is produced</div><div class="line"></div><div class="line">Car is producing!!!</div><div class="line">Car is produced</div><div class="line">Car is blue</div></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String color;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Car</span><span class="params">()</span></span>&#123;</span><br><span class="line">		product();</span><br><span class="line">		System.out.println(<span class="string">"Car is produced"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Car</span><span class="params">(String color)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>();</span><br><span class="line">        <span class="keyword">this</span>.color = color;</span><br><span class="line">        getColor(color);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">product</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Car is producing!!!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getColor</span><span class="params">(String color)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Car is "</span> + color);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>随便找一个java在线编译工具来编译执行一下代码，输入：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Car();</span><br><span class="line"><span class="keyword">new</span> Car(blue);</span><br></pre></td></tr></table></figure>
+<p>控制台会分别输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Car is producing!!!</span><br><span class="line">Car is produced</span><br><span class="line"></span><br><span class="line">Car is producing!!!</span><br><span class="line">Car is produced</span><br><span class="line">Car is blue</span><br></pre></td></tr></table></figure>
 <p>js因为历史原因，把类，构造函数等概念弱化了，所以通过js来理解类，构造函数等概念并不容易所以我们祭出一段java来理解。<br>首先我们定义了一个Car类，可以理解成js中我们定义了一个Car对象，这个Car对象有一个私有变量color即车的颜色，又有一个私有方法product和getColor。<br>在我们new Car()的时候，java会自动寻找同名构造函数即Car()，这时候我们就先调用product()方法，生产了一辆车。<br>当我们new Car(blue)的时候，我们也是会去寻找同名函数Car()，然后找到可以传入String类型的重载构造函数，然后调用Car(String color),然后this()即是执行Car()构造函数，然后给私有变量color赋值为blue，然后再执行getColor方法进行喷漆操作。<br>所以这时候我们有了两辆车，一辆没有颜色，一辆是蓝色的。  </p>
 <p>基础概念有了，我们回归到js，js的constructor是什么呢，是我们创建Object构造函数的引用。<br>大白话说，比如我们在浏览器中执行：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="built_in">Array</span>()</div><div class="line"><span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">5</span>)</div><div class="line"><span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</div></pre></td></tr></table></figure>
-<p>我们会拿到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[]</div><div class="line">(5) [empty × 5]</div><div class="line">[1, 2, 3, 4, 5]</div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Array</span>()</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p>我们会拿到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[]</span><br><span class="line">(5) [empty × 5]</span><br><span class="line">[1, 2, 3, 4, 5]</span><br></pre></td></tr></table></figure>
 <p>而拿到的三个数组的constructor则是js中Array()的方法。也就是说，[].<strong>proto</strong>.constructor指向了Array()方法。<br>我们传入了null，Number以及1,2,3,4,5，Array通过构造函数重载分别生成了3个数组，而这3个数组的constructor又指向了生成自己的母体的地址。而这个Array是如何下蛋的请各位看官去看看js的源码。</p>
 <p>我们理解了constructor是什么，那么这时候我们去用js去写一个我们用java写的实例。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">color</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.color = color</div><div class="line">    <span class="keyword">this</span>.product = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"Car is producing!!!"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.getColor = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"Car is "</span> + color)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.run = <span class="function"><span class="keyword">function</span> (<span class="params">color</span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.product()</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Car is produced'</span>)</div><div class="line">        color ? <span class="keyword">this</span>.getColor(color) : <span class="string">''</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.run(<span class="keyword">this</span>.color)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">new</span> Car()</div><div class="line"><span class="keyword">new</span> Car(<span class="string">'blue'</span>)</div></pre></td></tr></table></figure>
-<p>执行结果如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Car is producing!!!</div><div class="line">Car is produced</div><div class="line"></div><div class="line">Car is producing!!!</div><div class="line">Car is produced</div><div class="line">Car is blue</div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">color</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.color = color</span><br><span class="line">    <span class="keyword">this</span>.product = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"Car is producing!!!"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.getColor = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"Car is "</span> + color)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.run = <span class="function"><span class="keyword">function</span> (<span class="params">color</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.product()</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Car is produced'</span>)</span><br><span class="line">        color ? <span class="keyword">this</span>.getColor(color) : <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.run(<span class="keyword">this</span>.color)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Car()</span><br><span class="line"><span class="keyword">new</span> Car(<span class="string">'blue'</span>)</span><br></pre></td></tr></table></figure>
+<p>执行结果如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Car is producing!!!</span><br><span class="line">Car is produced</span><br><span class="line"></span><br><span class="line">Car is producing!!!</span><br><span class="line">Car is produced</span><br><span class="line">Car is blue</span><br></pre></td></tr></table></figure>
 <p>是不是跟java已经很相似了。因为js在诞生的时候就是仿照java来编写的，为了易用性作者故意弱化了js类的概念。但是js发展至今日又有使用类的需求，所以我们会模拟一些类的写法，具体如何模拟会在下一篇原型链说明中表述。</p>
 <p>剩下几个已经没有与constructor一样难以理解的方法，所以转来一些定义和示例方便大家阅读。以下概念及示例均转自MDN</p>
 <h3 id="hasOwnProperty-NaN"><a href="#hasOwnProperty-NaN" class="headerlink" title="hasOwnProperty"></a>hasOwnProperty</h3><blockquote>
 <p>所有继承了 Object 的对象都会继承到 hasOwnProperty 方法。这个方法可以用来检测一个对象是否含有特定的自身属性;并且忽略那些从原型链上继承到的属性。</p>
 </blockquote>
-<p>示例<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">o = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">o.prop = <span class="string">'exists'</span>;</div><div class="line">o.hasOwnProperty(<span class="string">'prop'</span>);             <span class="comment">// 返回 true</span></div><div class="line">o.hasOwnProperty(<span class="string">'toString'</span>);         <span class="comment">// 返回 false</span></div><div class="line">o.hasOwnProperty(<span class="string">'hasOwnProperty'</span>);   <span class="comment">// 返回 false</span></div></pre></td></tr></table></figure></p>
+<p>示例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">o.prop = <span class="string">'exists'</span>;</span><br><span class="line">o.hasOwnProperty(<span class="string">'prop'</span>);             <span class="comment">// 返回 true</span></span><br><span class="line">o.hasOwnProperty(<span class="string">'toString'</span>);         <span class="comment">// 返回 false</span></span><br><span class="line">o.hasOwnProperty(<span class="string">'hasOwnProperty'</span>);   <span class="comment">// 返回 false</span></span><br></pre></td></tr></table></figure>
 <p>该方法检测对象是否含有私有的特定方法。</p>
 <h3 id="isPrototypeOf-NaN"><a href="#isPrototypeOf-NaN" class="headerlink" title="isPrototypeOf"></a>isPrototypeOf</h3><blockquote>
 <p>isPrototypeOf() 方法允许你检查一个对象是否存在于另一个对象的原型链上。</p>
 </blockquote>
-<p>示例<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Baz</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"></div><div class="line">Bar.prototype = <span class="built_in">Object</span>.create(Foo.prototype);</div><div class="line">Baz.prototype = <span class="built_in">Object</span>.create(Bar.prototype);</div><div class="line"></div><div class="line"><span class="keyword">var</span> baz = <span class="keyword">new</span> Baz();</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(Baz.prototype.isPrototypeOf(baz)); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(Bar.prototype.isPrototypeOf(baz)); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(Foo.prototype.isPrototypeOf(baz)); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.isPrototypeOf(baz)); <span class="comment">// true</span></div></pre></td></tr></table></figure></p>
+<p>示例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Baz</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">Bar.prototype = <span class="built_in">Object</span>.create(Foo.prototype);</span><br><span class="line">Baz.prototype = <span class="built_in">Object</span>.create(Bar.prototype);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> baz = <span class="keyword">new</span> Baz();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Baz.prototype.isPrototypeOf(baz)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(Bar.prototype.isPrototypeOf(baz)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(Foo.prototype.isPrototypeOf(baz)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.isPrototypeOf(baz)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <h3 id="propertyIsEnumerable-NaN"><a href="#propertyIsEnumerable-NaN" class="headerlink" title="propertyIsEnumerable"></a>propertyIsEnumerable</h3><blockquote>
 <p>每个对象都有一个propertyIsEnumerable方法。此方法可以确定对象中指定的属性是否可以被for…in循环枚举，但是通过原型链继承的属性除外。如果对象没有指定的属性，则此方法返回false。</p>
 </blockquote>
-<p>示例<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o = &#123;&#125;;</div><div class="line"><span class="keyword">var</span> a = [];</div><div class="line">o.prop = <span class="string">'is enumerable'</span>;</div><div class="line">a[<span class="number">0</span>] = <span class="string">'is enumerable'</span>;</div><div class="line"></div><div class="line">o.propertyIsEnumerable(<span class="string">'prop'</span>);   <span class="comment">//  返回 true</span></div><div class="line">a.propertyIsEnumerable(<span class="number">0</span>);        <span class="comment">// 返回 true</span></div></pre></td></tr></table></figure></p>
+<p>示例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> a = [];</span><br><span class="line">o.prop = <span class="string">'is enumerable'</span>;</span><br><span class="line">a[<span class="number">0</span>] = <span class="string">'is enumerable'</span>;</span><br><span class="line"></span><br><span class="line">o.propertyIsEnumerable(<span class="string">'prop'</span>);   <span class="comment">//  返回 true</span></span><br><span class="line">a.propertyIsEnumerable(<span class="number">0</span>);        <span class="comment">// 返回 true</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="toLocaleString-NaN"><a href="#toLocaleString-NaN" class="headerlink" title="toLocaleString"></a>toLocaleString</h3><blockquote>
 <p>返回调用toString()的结果。会有些内置对象去复写该方法如Array，Number,Date。</p>
 </blockquote>
@@ -459,7 +472,8 @@
 <p>==和===的问题</p>
 </blockquote>
 <p>也是在工作中遇到的，刚做前端的时候不以为然，觉得没什么区别，后来发现天差地别。<br>js中存在相等运算符和严格运算符。<br>严格运算符会判断，是否同一类型，同一原始值和同一复合类型值。<br>而相等运算符都会把所有原始类型的值变为数值类型进行比较。(不要小看这个，他会把0==undefined==false变为true)。<br>如果这样还无法说服你放弃使用==的话请看下面的代码。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">valueOf</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; x = <span class="number">2</span>; <span class="keyword">return</span> <span class="number">0</span> &#125;&#125;;</div><div class="line"><span class="built_in">console</span>.log(obj == <span class="number">0</span>, x) <span class="comment">// true, 2;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">valueOf</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; x = <span class="number">2</span>; <span class="keyword">return</span> <span class="number">0</span> &#125;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj == <span class="number">0</span>, x) <span class="comment">// true, 2;</span></span><br></pre></td></tr></table></figure>
+
 <p>从野生程序员到家养程序员的进化从放弃使用==开始！</p>
 
       
@@ -480,7 +494,7 @@
           
             <a href="/tags/js/" <i class="fa fa-tag"></i> js</a>
           
-            <a href="/tags/数据类型/" <i class="fa fa-tag"></i> 数据类型</a>
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" <i class="fa fa-tag"></i> 数据类型</a>
           
         </div>
       
@@ -493,7 +507,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/07/webpack + react + react-router + redux最佳实践/" rel="next" title="webpack + react + react-router + redux最佳实践">
+              <a href="/2017/10/07/webpack%20+%20react%20+%20react-router%20+%20redux%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" rel="next" title="webpack + react + react-router + redux最佳实践">
                 <i class="fa fa-chevron-left"></i> webpack + react + react-router + redux最佳实践
               </a>
             
@@ -503,7 +517,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/10/JS原型链剖析/" rel="prev" title="JS原型、原型链剖析（js基础提升之二）">
+              <a href="/2018/03/10/JS%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%89%96%E6%9E%90/" rel="prev" title="JS原型、原型链剖析（js基础提升之二）">
                 JS原型、原型链剖析（js基础提升之二） <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -584,9 +598,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -597,7 +611,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -608,7 +622,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -671,7 +685,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

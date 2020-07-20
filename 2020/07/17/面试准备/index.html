@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="面试," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="写在前面入职平安2年。深陷业务无法自拔。又到了换工作的准备期。而且这次目标是一线大厂。所以记录一下准备面试的过程记录。   1。JS基础知识。JS基础在前几年的文章中已经吧难点基本写的比较清楚了。不过后续会拿面试题来提升理解。暂时先放过JS基础。  2。算法方向。总结算法方向。在本文解释大体算法类型。 3。项目工程化方向。微前端，构建工具。  4。业务方向。前端代码生成器，页面解释器，等等新颖业务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试准备">
+<meta property="og:url" content="http://yoursite.com/2020/07/17/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/index.html">
+<meta property="og:site_name" content="臭脾气码农">
+<meta property="og:description" content="写在前面入职平安2年。深陷业务无法自拔。又到了换工作的准备期。而且这次目标是一线大厂。所以记录一下准备面试的过程记录。   1。JS基础知识。JS基础在前几年的文章中已经吧难点基本写的比较清楚了。不过后续会拿面试题来提升理解。暂时先放过JS基础。  2。算法方向。总结算法方向。在本文解释大体算法类型。 3。项目工程化方向。微前端，构建工具。  4。业务方向。前端代码生成器，页面解释器，等等新颖业务">
+<meta property="article:published_time" content="2020-07-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-20T07:29:18.995Z">
+<meta property="article:author" content="xy">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/17/面试准备/"/>
+
+
+
+
+
+  <title>面试准备 | 臭脾气码农</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">臭脾气码农</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://oy0btip7w.bkt.clouddn.com/WechatIMG187.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="臭脾气码农">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面试准备</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-17T00:00:00+08:00">
+                2020-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%81%8C%E4%B8%9A%E6%88%90%E9%95%BF%E6%9D%82%E8%B0%88/" itemprop="url" rel="index">
+                    <span itemprop="name">职业成长杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>入职平安2年。深陷业务无法自拔。又到了换工作的准备期。而且这次目标是一线大厂。所以记录一下准备面试的过程记录。  </p>
+<p>1。JS基础知识。JS基础在前几年的文章中已经吧难点基本写的比较清楚了。不过后续会拿面试题来提升理解。暂时先放过JS基础。 </p>
+<p>2。算法方向。总结算法方向。在本文解释大体算法类型。</p>
+<p>3。项目工程化方向。微前端，构建工具。 </p>
+<p>4。业务方向。前端代码生成器，页面解释器，等等新颖业务解析。  </p>
+<p>5。网络层方向，前端安全性，前端性能优化，http请求，nginx。</p>
+<p>6。node方向以及服务器渲染。koa，express。</p>
+<p>7。运维方向。docker。</p>
+<hr>
+<h3 id="JS基础知识"><a href="#JS基础知识" class="headerlink" title="JS基础知识"></a>JS基础知识</h3><p>把JS基础提到第一个去准备是因为JS基础真的很重要。不是一般的重要。不过难点和要点也不是太多。后续JS基础准备也是通过刷题来巩固知识。当然不排除再刷一遍JS书。也是一个不错的提升途径。  </p>
+<hr>
+<h3 id="算法方向"><a href="#算法方向" class="headerlink" title="算法方向"></a>算法方向</h3><p>算法是有分类的。面试一般会从各个大类挑选出1-2个方向考察面试者对算法的了解。不过最近貌似各个大厂都加强了算法的考察。不过不重要。方向总是没有变的。</p>
+<p>1。Hash相关<br>2。链表操作<br>3。双指针遍历（滑动窗口）<br>4。快慢指针遍历<br>5。区间合并<br>6。字符串操作<br>7。数字操作<br>8。栈相关<br>9。堆相关<br>10。递归<br>11。分治法/二分法<br>12。动态规划<br>13。回溯法<br>14。树的遍历<br>15。二叉树搜索  </p>
+<hr>
+<h3 id="项目工程化"><a href="#项目工程化" class="headerlink" title="项目工程化"></a>项目工程化</h3><p>但凡入行两年，还停留在业务层面，没有了解一个项目如何自动化构建，部署，发布以及到线上正常访问。都不能算是一个合格的程序员。无论前后端。至少得知道一种构建工具。并熟练的使用构建工具构建一个跟日常开发相近的前端工程。  </p>
+<p>当熟练使用一种构建工具之后。就需要在日常项目中去深入理解如何使用构建工具来提升开发效率、项目痛点以及性能优化。通过工具让coding更美好。  </p>
+<hr>
+<h3 id="业务方向"><a href="#业务方向" class="headerlink" title="业务方向"></a>业务方向</h3><p>现在的公司是从事人事系统管理的。主要还是2b的业务。因为有特定的交付压力。面对不同的客户会有不同的需求。但是我们公司的标准产品规划并没有很明确。所以疲于业务。  </p>
+<p>解决相关业务问题。个人总结两个方向。代码解释器（cms）和代码生成器。  </p>
+<p>cms适用于简单配置页面，当页面过于复杂时cms会存在解释器性能问题。但是用于配置一些简单的页面cms真的很方便。  </p>
+<p>而代码生成器在2b业务中会非常适用。而且便于二次开发。后续会有一篇文章来说明代码生成器的实现原理。  </p>
+<p>而2b的产品在交付时会有不同的模块。各个模块又是独立的工程。如何把这些工程结合在一起。微前端的出现又解决了相应的痛点。  </p>
+<hr>
+<h3 id="网络层面，性能优化，以及nginx"><a href="#网络层面，性能优化，以及nginx" class="headerlink" title="网络层面，性能优化，以及nginx"></a>网络层面，性能优化，以及nginx</h3><p>这个方向主要解决的是项目上线过程中遇到的问题。作为一个合格的前端。你必须得知道开发结束之后。你的工程如何在服务器上运行。并且你构建的项目有没有可以优化的地方，以及会遇到的问题。  </p>
+<hr>
+<h3 id="node"><a href="#node" class="headerlink" title="node"></a>node</h3><p>前端的趋势。虽然没有使用过，但是你必须知道如何使用。包括webpack中使用的express，当下中间键比较火的koa。也需要了解以及实践。  </p>
+<hr>
+<h3 id="运维以及docker"><a href="#运维以及docker" class="headerlink" title="运维以及docker"></a>运维以及docker</h3><p>还是哪句话，作为一个合格的开发，你必须知道你的项目如何在服务器上运行。且需要知道服务器如何操作使用，容器docker是个什么东西。</p>
+<hr>
+<h2 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h2><p>明确了学习方向。我们就来逐一进行重点解析。争取在今年将以上的重点全部梳理一遍。 </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E9%9D%A2%E8%AF%95/" <i class="fa fa-tag"></i> 面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/15/%E6%8A%8A%E5%A4%A7%E8%B1%A1%E8%A3%85%E8%BF%9B%E5%86%B0%E7%AE%B1-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" rel="next" title="把大象装进冰箱-面向对象编程">
+                <i class="fa fa-chevron-left"></i> 把大象装进冰箱-面向对象编程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://oy0btip7w.bkt.clouddn.com/WechatIMG187.jpeg"
+                alt="xy" />
+            
+              <p class="site-author-name" itemprop="name">xy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/codingWythe" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JS基础知识"><span class="nav-number">1.1.</span> <span class="nav-text">JS基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法方向"><span class="nav-number">1.2.</span> <span class="nav-text">算法方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目工程化"><span class="nav-number">1.3.</span> <span class="nav-text">项目工程化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#业务方向"><span class="nav-number">1.4.</span> <span class="nav-text">业务方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络层面，性能优化，以及nginx"><span class="nav-number">1.5.</span> <span class="nav-text">网络层面，性能优化，以及nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#node"><span class="nav-number">1.6.</span> <span class="nav-text">node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运维以及docker"><span class="nav-number">1.7.</span> <span class="nav-text">运维以及docker</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在后面"><span class="nav-number">2.</span> <span class="nav-text">写在后面</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
