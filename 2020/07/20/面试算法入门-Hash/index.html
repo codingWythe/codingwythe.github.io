@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="面试," />
+  <meta name="keywords" content="算法,Hash," />
 
 
 
@@ -79,16 +79,17 @@
 
 
 
-<meta name="description" content="写在前面入职平安2年。深陷业务无法自拔。又到了换工作的准备期。而且这次目标是一线大厂。所以记录一下准备面试的过程记录。   1。JS基础知识。JS基础在前几年的文章中已经吧难点基本写的比较清楚了。不过后续会拿面试题来提升理解。暂时先放过JS基础。  2。算法方向。总结算法方向。在本文解释大体算法类型。 3。项目工程化方向。微前端，构建工具。  4。业务方向。前端代码生成器，页面解释器，等等新颖业务">
+<meta name="description" content="写在前面面试准备算法篇之一。Hash表。  Hash算法哈希表（Hash Table，也叫散列表），是根据键（Key）而直接访问在内存存储位置的数据结构。也就是说，它通过计算一个关于键值的函数，将所需查询的数据映射到表中一个位置来访问记录，这加快了查找速度。这个映射函数称做哈希函数，存放记录的数组称做哈希表。 一个通俗的例子是，为了查找电话簿中某人的号码，可以创建一个按照人名首字母顺序排列的表（即">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面试准备">
-<meta property="og:url" content="http://yoursite.com/2020/07/17/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/index.html">
+<meta property="og:title" content="面试算法入门-Hash">
+<meta property="og:url" content="http://yoursite.com/2020/07/20/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8-Hash/index.html">
 <meta property="og:site_name" content="臭脾气码农">
-<meta property="og:description" content="写在前面入职平安2年。深陷业务无法自拔。又到了换工作的准备期。而且这次目标是一线大厂。所以记录一下准备面试的过程记录。   1。JS基础知识。JS基础在前几年的文章中已经吧难点基本写的比较清楚了。不过后续会拿面试题来提升理解。暂时先放过JS基础。  2。算法方向。总结算法方向。在本文解释大体算法类型。 3。项目工程化方向。微前端，构建工具。  4。业务方向。前端代码生成器，页面解释器，等等新颖业务">
-<meta property="article:published_time" content="2020-07-16T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-07-20T07:29:18.995Z">
+<meta property="og:description" content="写在前面面试准备算法篇之一。Hash表。  Hash算法哈希表（Hash Table，也叫散列表），是根据键（Key）而直接访问在内存存储位置的数据结构。也就是说，它通过计算一个关于键值的函数，将所需查询的数据映射到表中一个位置来访问记录，这加快了查找速度。这个映射函数称做哈希函数，存放记录的数组称做哈希表。 一个通俗的例子是，为了查找电话簿中某人的号码，可以创建一个按照人名首字母顺序排列的表（即">
+<meta property="article:published_time" content="2020-07-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-20T09:54:21.953Z">
 <meta property="article:author" content="xy">
-<meta property="article:tag" content="面试">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="Hash">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/07/17/面试准备/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/07/20/面试算法入门-Hash/"/>
 
 
 
 
 
-  <title>面试准备 | 臭脾气码农</title>
+  <title>面试算法入门-Hash | 臭脾气码农</title>
   
 
 
@@ -262,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8-Hash/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xy">
@@ -279,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">面试准备</h1>
+          <h1 class="post-title" itemprop="name headline">面试算法入门-Hash</h1>
         
 
         <div class="post-meta">
@@ -291,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-17T00:00:00+08:00">
-                2020-07-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-20T00:00:00+08:00">
+                2020-07-20
               </time>
             
 
@@ -314,8 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%81%8C%E4%B8%9A%E6%88%90%E9%95%BF%E6%9D%82%E8%B0%88/" itemprop="url" rel="index">
-                    <span itemprop="name">职业成长杂谈</span>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">算法入门</span>
                   </a>
                 </span>
 
@@ -351,36 +352,30 @@
       
 
       
-        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>入职平安2年。深陷业务无法自拔。又到了换工作的准备期。而且这次目标是一线大厂。所以记录一下准备面试的过程记录。  </p>
-<p>1。JS基础知识。JS基础在前几年的文章中已经吧难点基本写的比较清楚了。不过后续会拿面试题来提升理解。暂时先放过JS基础。 </p>
-<p>2。算法方向。总结算法方向。在本文解释大体算法类型。</p>
-<p>3。项目工程化方向。微前端，构建工具。 </p>
-<p>4。业务方向。前端代码生成器，页面解释器，等等新颖业务解析。  </p>
-<p>5。网络层方向，前端安全性，前端性能优化，http请求，nginx。</p>
-<p>6。node方向以及服务器渲染。koa，express。</p>
-<p>7。运维方向。docker。</p>
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>面试准备算法篇之一。Hash表。</p>
 <hr>
-<h3 id="JS基础知识"><a href="#JS基础知识" class="headerlink" title="JS基础知识"></a>JS基础知识</h3><p>把JS基础提到第一个去准备是因为JS基础真的很重要。不是一般的重要。不过难点和要点也不是太多。后续JS基础准备也是通过刷题来巩固知识。当然不排除再刷一遍JS书。也是一个不错的提升途径。  </p>
+<h3 id="Hash算法"><a href="#Hash算法" class="headerlink" title="Hash算法"></a>Hash算法</h3><p>哈希表（Hash Table，也叫散列表），是根据键（Key）而直接访问在内存存储位置的数据结构。也就是说，它通过计算一个关于键值的函数，将所需查询的数据映射到表中一个位置来访问记录，这加快了查找速度。这个映射函数称做哈希函数，存放记录的数组称做哈希表。</p>
+<p>一个通俗的例子是，为了查找电话簿中某人的号码，可以创建一个按照人名首字母顺序排列的表（即建立人名 xx 到首字母 F(x)F(x) 的一个函数关系），在首字母为 WW 的表中查找 “王” 姓的电话号码，显然比直接查找就要快得多。这里使用人名作为关键字，“取首字母” 是这个例子中哈希函数的函数法则 F()F()，存放首字母的表对应哈希表。关键字和函数法则理论上可以任意确定。</p>
+<p>哈希表是使用 O(1)O(1) 时间进行数据的插入删除和查找，但是哈希表不保证表中数据的有序性，这样在哈希表中查找最大数据或者最小数据的时间是 O(N)O(N) 实现。</p>
 <hr>
-<h3 id="算法方向"><a href="#算法方向" class="headerlink" title="算法方向"></a>算法方向</h3><p>算法是有分类的。面试一般会从各个大类挑选出1-2个方向考察面试者对算法的了解。不过最近貌似各个大厂都加强了算法的考察。不过不重要。方向总是没有变的。</p>
-<p>1。Hash相关<br>2。链表操作<br>3。双指针遍历（滑动窗口）<br>4。快慢指针遍历<br>5。区间合并<br>6。字符串操作<br>7。数字操作<br>8。栈相关<br>9。堆相关<br>10。递归<br>11。分治法/二分法<br>12。动态规划<br>13。回溯法<br>14。树的遍历<br>15。二叉树搜索  </p>
+<h3 id="经典题目-leetcode"><a href="#经典题目-leetcode" class="headerlink" title="经典题目(leetcode)"></a>经典题目(leetcode)</h3><p>两数之和</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">给定一个整数数组 nums 和一个目标值 target，</span><br><span class="line">请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</span><br><span class="line">你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">示例:</span><br><span class="line">给定 nums &#x3D; [2, 7, 11, 15], target &#x3D; 9</span><br><span class="line">因为 nums[0] + nums[1] &#x3D; 2 + 7 &#x3D; 9</span><br><span class="line">所以返回 [0, 1]</span><br></pre></td></tr></table></figure>
+
+<p>解题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">target</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> twoSum = <span class="function"><span class="keyword">function</span>(<span class="params">nums, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> hashMap = &#123;&#125;, res=[]</span><br><span class="line">    nums.some(<span class="function">(<span class="params">num, index</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(hashMap[target-num] !== <span class="literal">undefined</span>) &#123;  <span class="comment">// 使用some可以减少遍历次数</span></span><br><span class="line">            res = [index, hashMap[target-num]]</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">        hashMap[num] = index <span class="comment">// 后负值可以不用担心角标重复</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>解题思路</p>
+<p>Hash表主要是做映射解题思路。对于该题来说。我们定义一个hashMap映射集合。判断当我们映射集合中存在target-num(当前角标值)值的元素的时候。即算找到正确解。  </p>
+<p>需要注意的是遍历时用some，当return为true时自动跳出。先判断是否有符合条件的值，再给hashMap负值可以免去当前角标重复判断。</p>
 <hr>
-<h3 id="项目工程化"><a href="#项目工程化" class="headerlink" title="项目工程化"></a>项目工程化</h3><p>但凡入行两年，还停留在业务层面，没有了解一个项目如何自动化构建，部署，发布以及到线上正常访问。都不能算是一个合格的程序员。无论前后端。至少得知道一种构建工具。并熟练的使用构建工具构建一个跟日常开发相近的前端工程。  </p>
-<p>当熟练使用一种构建工具之后。就需要在日常项目中去深入理解如何使用构建工具来提升开发效率、项目痛点以及性能优化。通过工具让coding更美好。  </p>
-<hr>
-<h3 id="业务方向"><a href="#业务方向" class="headerlink" title="业务方向"></a>业务方向</h3><p>现在的公司是从事人事系统管理的。主要还是2b的业务。因为有特定的交付压力。面对不同的客户会有不同的需求。但是我们公司的标准产品规划并没有很明确。所以疲于业务。  </p>
-<p>解决相关业务问题。个人总结两个方向。代码解释器（cms）和代码生成器。  </p>
-<p>cms适用于简单配置页面，当页面过于复杂时cms会存在解释器性能问题。但是用于配置一些简单的页面cms真的很方便。  </p>
-<p>而代码生成器在2b业务中会非常适用。而且便于二次开发。后续会有一篇文章来说明代码生成器的实现原理。  </p>
-<p>而2b的产品在交付时会有不同的模块。各个模块又是独立的工程。如何把这些工程结合在一起。微前端的出现又解决了相应的痛点。  </p>
-<hr>
-<h3 id="网络层面，性能优化，以及nginx"><a href="#网络层面，性能优化，以及nginx" class="headerlink" title="网络层面，性能优化，以及nginx"></a>网络层面，性能优化，以及nginx</h3><p>这个方向主要解决的是项目上线过程中遇到的问题。作为一个合格的前端。你必须得知道开发结束之后。你的工程如何在服务器上运行。并且你构建的项目有没有可以优化的地方，以及会遇到的问题。  </p>
-<hr>
-<h3 id="node"><a href="#node" class="headerlink" title="node"></a>node</h3><p>前端的趋势。虽然没有使用过，但是你必须知道如何使用。包括webpack中使用的express，当下中间键比较火的koa。也需要了解以及实践。  </p>
-<hr>
-<h3 id="运维以及docker"><a href="#运维以及docker" class="headerlink" title="运维以及docker"></a>运维以及docker</h3><p>还是哪句话，作为一个合格的开发，你必须知道你的项目如何在服务器上运行。且需要知道服务器如何操作使用，容器docker是个什么东西。</p>
-<hr>
-<h2 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h2><p>明确了学习方向。我们就来逐一进行重点解析。争取在今年将以上的重点全部梳理一遍。 </p>
+<p>两个数组的交集 II</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">给定两个数组，编写一个函数来计算它们的交集。</span><br><span class="line"></span><br><span class="line">示例 1：</span><br><span class="line">输入：nums1 &#x3D; [1,2,2,1], nums2 &#x3D; [2,2]</span><br><span class="line">输出：[2,2]</span><br><span class="line"></span><br><span class="line">示例 2:</span><br><span class="line">输入：nums1 &#x3D; [4,9,5], nums2 &#x3D; [9,4,9,8,4]</span><br><span class="line">输出：[4,9]</span><br></pre></td></tr></table></figure>
+
+<p>解题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums1</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums2</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> intersect = <span class="function"><span class="keyword">function</span>(<span class="params">nums1, nums2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> hashMap1 = &#123;&#125;, res = []</span><br><span class="line">    nums1.forEach(<span class="function">(<span class="params">num</span>)=&gt;</span> &#123;</span><br><span class="line">        hashMap1[num] ? hashMap1[num]++ : hashMap1[num] = <span class="number">1</span> </span><br><span class="line">    &#125;)</span><br><span class="line">    nums2.forEach(<span class="function">(<span class="params">num</span>)=&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(hashMap1[num]) &#123;</span><br><span class="line">            res.push(num)</span><br><span class="line">            hashMap1[num] --</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>解题思路</p>
+<p>定义hashMap存下nums1中的数字出现的次数。在nums2遍历的时候动态删除，同时在res数组中添加相应的数字即可。</p>
 
       
     </div>
@@ -398,7 +393,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E9%9D%A2%E8%AF%95/" <i class="fa fa-tag"></i> 面试</a>
+            <a href="/tags/%E7%AE%97%E6%B3%95/" <i class="fa fa-tag"></i> 算法</a>
+          
+            <a href="/tags/Hash/" <i class="fa fa-tag"></i> Hash</a>
           
         </div>
       
@@ -411,8 +408,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/15/%E6%8A%8A%E5%A4%A7%E8%B1%A1%E8%A3%85%E8%BF%9B%E5%86%B0%E7%AE%B1-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" rel="next" title="把大象装进冰箱-面向对象编程">
-                <i class="fa fa-chevron-left"></i> 把大象装进冰箱-面向对象编程
+              <a href="/2020/07/17/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/" rel="next" title="面试准备">
+                <i class="fa fa-chevron-left"></i> 面试准备
               </a>
             
           </div>
@@ -420,10 +417,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/07/20/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8-Hash/" rel="prev" title="面试算法入门-Hash">
-                面试算法入门-Hash <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -569,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JS基础知识"><span class="nav-number">1.1.</span> <span class="nav-text">JS基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法方向"><span class="nav-number">1.2.</span> <span class="nav-text">算法方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目工程化"><span class="nav-number">1.3.</span> <span class="nav-text">项目工程化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#业务方向"><span class="nav-number">1.4.</span> <span class="nav-text">业务方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络层面，性能优化，以及nginx"><span class="nav-number">1.5.</span> <span class="nav-text">网络层面，性能优化，以及nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#node"><span class="nav-number">1.6.</span> <span class="nav-text">node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运维以及docker"><span class="nav-number">1.7.</span> <span class="nav-text">运维以及docker</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在后面"><span class="nav-number">2.</span> <span class="nav-text">写在后面</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hash算法"><span class="nav-number">2.</span> <span class="nav-text">Hash算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#经典题目-leetcode"><span class="nav-number">3.</span> <span class="nav-text">经典题目(leetcode)</span></a></li></ol></div>
             
 
           </div>
